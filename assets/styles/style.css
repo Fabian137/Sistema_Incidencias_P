@@ -1,0 +1,184 @@
+/*GLOBALS*/
+.right-space{
+  margin-right: 1.5rem;
+}
+::-webkit-scrollbar {
+  width: 0.5rem;
+  border-radius: 1rem;
+}
+::-webkit-scrollbar-thumb{
+  width: 1vh;
+  border-radius: 1rem;
+  background-color: #b5b5b5;
+}
+body{background-color: #f0f0f0 !important; color: #000000;}
+.section {
+  margin-top: 20px;
+  margin-bottom: 0px;
+  padding-bottom: opx;
+}
+nav{height: 20vh;}
+img {
+  max-width: 100%;
+  width: 9rem;
+}
+hr{
+  height: 3px !important;
+  margin: 2rem 0 !important;
+  background-color: #75293d;
+  opacity: .5;
+}
+p{font-size: small;}
+label{font-size: small;}
+.top-space{margin-top: 1.5rem;}
+.small-form{width: 50%;}
+.mb-3 {margin-bottom: 0.5rem!important;}
+.foto{
+  margin-right: 20px;
+  text-align: center;
+}
+.fotoprofile{
+  border-radius: 100%;
+}
+.center{
+  display: flex;
+  justify-content: center;
+}
+.center-banners{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ul:not(.browser-default)>li{
+  list-style: disc;
+}
+
+.row {--bs-gutter-x: 0;}
+.contenedor{margin:0 15%;}
+.btn{background-color: #75293d; border-color: #8b0505;}
+a{
+text-decoration: none;
+color: rgb(5, 5, 5);
+}
+.g-3, .gx-3 {
+  --bs-gutter-x: 1rem;
+}
+ul{list-style: none;}
+.logo{width: 22rem;}
+
+
+.btn:hover{background-color: #0000009b;}
+.btn2:hover{background-color: #0000009b;}
+.colorfont{background-color: #0a0b1013;}
+.bots{
+  margin: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+@font-face {
+  font-family: 'Gotham';
+  src: url('GothamBold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
+.tituloH{
+  font-family: 'Gotham';
+}
+.form-label {
+  margin-bottom: 0.8rem;
+}
+/*TEMPLATE NAV*/
+.logo {
+  width: 22rem;
+  background-image: url(../img/cdmxLogo.png);
+  height: 5rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+/*.logo2{
+  width: 19rem;
+  margin-left:2%;
+  background-image: url(../img/tolsaTextLogo.png);
+  height: 5rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}*/
+
+h6 {
+  color: #75293d;
+  font-weight: bolder;
+}
+section.contenedor.row.g-3 p {
+  border: 2px solid #75293db7;
+  padding: 0.25rem;
+  border-radius: 0.4rem;
+}
+.forId{
+  display: block;
+  width: 100%;
+  -moz-padding-start: calc(0.75rem - 3px);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  background-color: #f0f0f0;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  border: 1px #f0f0f0;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-align:center;
+}
+.form-control{
+  background-color: #f1f1f1;
+  width: 70%;
+}
+.form-label{margin-bottom: 0;}
+
+@media (min-width: 320px) and (max-width:767px){
+  .nav-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo{width: 25rem;}
+  .tituloH{font-size: xx-small;}
+  .logo2{
+    width: 23rem;
+    margin-left:0;
+    height: 5rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  }
+.btnexit{
+  color: white;
+  padding: 1rem 1rem;
+}
+
+.btn:hover{
+  background-color: #ab8d5d;
+/*  border: 1px #ab8d5d;
+  color: #75293d;*/
+}
+
+.login-img{
+  width: 2rem;
+}
+.form-inline{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.form-check{
+  display: contents;
+}
