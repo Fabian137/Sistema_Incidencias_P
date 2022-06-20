@@ -36,9 +36,9 @@ include_once('db.php');
                 <div class="form-inline">
                 <select class="form-select right-space" name="Dependencia" id="Folio" style="width: 100%;">
                     <option value="DEJC">DEJC</option>
-                    <option value="DGRPC">DGRPC</option>
+                    <option value="DGRPPC">DGRPPC</option>
                     <option value="DGRT">DGRT</option>
-                    <option value="EDGJEL">EDGJEL</option>
+                    <option value="DGJEL">DGJEL</option>
                     <option value="DGSL">DGSL</option>
                     <option value="DGRC">DGRC</option>
                 </select>
@@ -65,13 +65,13 @@ include_once('db.php');
                         case "DEJC":
                         NumFolioDependencia.innerHTML = '21';
                         break;
-                        case "DGRPC":
+                        case "DGRPPC":
                         NumFolioDependencia.innerHTML = '27';
                         break;
                         case "DGRT":
                         NumFolioDependencia.innerHTML = '37';
                         break;
-                        case "EDGJEL":
+                        case "DGJEL":
                         NumFolioDependencia.innerHTML = '38';
                         break;
                         case "DGSL":
@@ -107,7 +107,7 @@ include_once('db.php');
             </p>
             <div class="col-md-6 top-space form-inline">
                 <p>DEL</p>
-                <input class="form-control" type="date" id="" name="FechaFin" min="2022-01-01" max="2025-12-31" style="width:35%;"> 
+                <input class="form-control" type="date" id="" name="FechaInit" min="2022-01-01" max="2025-12-31" style="width:35%;"> 
                 <p>AL</p>
                 <input class="form-control" type="date" id="" name="FechaFin" min="2022-01-01" max="2025-12-31" style="width:35%;"> 
             </div>
@@ -253,49 +253,39 @@ if($_POST['send']){
     $NS = $_POST["NS"];
     $Observaciones = $_POST["Observaciones"];
 
-//$sendData ="INSERT INTO `data` (`CondicionesGrTrabajo`, `LeyFederalTrabajadores`, `FechaIngreso`) VALUES ('$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso')";    
-    //$dataInsert = mysqli_query($conexion, $sendData);
-    echo 'hola VMUNDO';
-    //header("Refresh:1");
-     /*echo'<script type="text/javascript">
-      alert("Reporte guardado. Trabajaremos  en ello.");
-      </scrip+.,}{-f-g-g-gñ-t>';
-      TODO 
-      
-      REVISAR LOS TIPOS DE DATOS FALTANTES*/
-/*
-      if(){
-7
-      }*/
+    
       switch ($Dependencia) {
         case "DEJC":
             $sendData3 = "INSERT INTO `DEJC` (`Folio`, `FechaInit`, `FechaFin`, `NombreE`, `RFC`, `TipoContrato`, `SS`, `Adscrito`, `CondicionesGrTrabajo`, `LeyFederalTrabajadores`, `FechaIngreso`, `DiasLabora`, `HorarioStart`, `HorarioEnd`, `LugarFormNoRg`, `NS`, `Observaciones`) VALUES
-            ('$Folio','$FechaInit', '$FechaFin','$NombreE', '$RFC', '$TipoContrato','$SS','$Adscrito', '$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso', '$DiasLabora', '$HorarioStart', '$HorarioEnd', '$LugarFormNoRg', '$NS', '$Observaciones')";
+            ('21','$FechaInit', '$FechaFin','$NombreE', '$RFC', '$TipoContrato','$SS','$Adscrito', '$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso', '$DiasLabora', '$HorarioStart', '$HorarioEnd', '$LugarFormNoRg', '$NS', '$Observaciones')";
 
             $dataInsert = mysqli_query($conexion, $sendData3);
+            var_dump($sendData3);
+            var_dump($dataInsert);
             break;
-        case "DGRPC":
-            $sendData2 = "INSERT INTO `DGRPC` (`NombreE`) VALUES ('$NombreE')";
+        case "DGRPPC":
+            $sendData2 = "INSERT INTO `DGRPPC` (`Folio`, `FechaInit`, `FechaFin`, `NombreE`, `RFC`, `TipoContrato`, `SS`, `Adscrito`, `CondicionesGrTrabajo`, `LeyFederalTrabajadores`, `FechaIngreso`, `DiasLabora`, `HorarioStart`, `HorarioEnd`, `LugarFormNoRg`, `NS`, `Observaciones`) VALUES
+            ('27','$FechaInit', '$FechaFin','$NombreE', '$RFC', '$TipoContrato','$SS','$Adscrito', '$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso', '$DiasLabora', '$HorarioStart', '$HorarioEnd', '$LugarFormNoRg', '$NS', '$Observaciones')";
             $dataInsert2 = mysqli_query($conexion, $sendData2);
             break;
         case "DGRT":
             $sendData4 = "INSERT INTO `DGRT` (`Folio`, `FechaInit`, `FechaFin`, `NombreE`, `RFC`, `TipoContrato`, `SS`, `Adscrito`, `CondicionesGrTrabajo`, `LeyFederalTrabajadores`, `FechaIngreso`, `DiasLabora`, `HorarioStart`, `HorarioEnd`, `LugarFormNoRg`, `NS`, `Observaciones`) VALUES
-            ('$Folio','$FechaInit', '$FechaFin','$NombreE', '$RFC', '$TipoContrato','$SS','$Adscrito', '$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso', '$DiasLabora', '$HorarioStart', '$HorarioEnd', '$LugarFormNoRg', '$NS', '$Observaciones')";
+            ('37','$FechaInit', '$FechaFin','$NombreE', '$RFC', '$TipoContrato','$SS','$Adscrito', '$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso', '$DiasLabora', '$HorarioStart', '$HorarioEnd', '$LugarFormNoRg', '$NS', '$Observaciones')";
             $dataInsert = mysqli_query($conexion, $sendData4);
             break;
-        case "EDGJEL":
-            $sendData5 = "INSERT INTO `DGRT` (`Folio`, `FechaInit`, `FechaFin`, `NombreE`, `RFC`, `TipoContrato`, `SS`, `Adscrito`, `CondicionesGrTrabajo`, `LeyFederalTrabajadores`, `FechaIngreso`, `DiasLabora`, `HorarioStart`, `HorarioEnd`, `LugarFormNoRg`, `NS`, `Observaciones`) VALUES
-            ('$Folio','$FechaInit', '$FechaFin','$NombreE', '$RFC', '$TipoContrato','$SS','$Adscrito', '$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso', '$DiasLabora', '$HorarioStart', '$HorarioEnd', '$LugarFormNoRg', '$NS', '$Observaciones')";
+        case "DGJEL":
+            $sendData5 = "INSERT INTO `DGJEL` (`Folio`, `FechaInit`, `FechaFin`, `NombreE`, `RFC`, `TipoContrato`, `SS`, `Adscrito`, `CondicionesGrTrabajo`, `LeyFederalTrabajadores`, `FechaIngreso`, `DiasLabora`, `HorarioStart`, `HorarioEnd`, `LugarFormNoRg`, `NS`, `Observaciones`) VALUES
+            ('38','$FechaInit', '$FechaFin','$NombreE', '$RFC', '$TipoContrato','$SS','$Adscrito', '$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso', '$DiasLabora', '$HorarioStart', '$HorarioEnd', '$LugarFormNoRg', '$NS', '$Observaciones')";
             $dataInsert = mysqli_query($conexion, $sendData5);
             break;
         case "DGSL":
             $sendData5 = "INSERT INTO `DGSL` (`Folio`, `FechaInit`, `FechaFin`, `NombreE`, `RFC`, `TipoContrato`, `SS`, `Adscrito`, `CondicionesGrTrabajo`, `LeyFederalTrabajadores`, `FechaIngreso`, `DiasLabora`, `HorarioStart`, `HorarioEnd`, `LugarFormNoRg`, `NS`, `Observaciones`) VALUES
-            ('$Folio','$FechaInit', '$FechaFin','$NombreE', '$RFC', '$TipoContrato','$SS','$Adscrito', '$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso', '$DiasLabora', '$HorarioStart', '$HorarioEnd', '$LugarFormNoRg', '$NS', '$Observaciones')";
+            ('39','$FechaInit', '$FechaFin','$NombreE', '$RFC', '$TipoContrato','$SS','$Adscrito', '$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso', '$DiasLabora', '$HorarioStart', '$HorarioEnd', '$LugarFormNoRg', '$NS', '$Observaciones')";
             $dataInsert = mysqli_query($conexion, $sendData5);
             break;
         case "DGRC":
             $sendData6 = "INSERT INTO `DGRC` (`Folio`, `FechaInit`, `FechaFin`, `NombreE`, `RFC`, `TipoContrato`, `SS`, `Adscrito`, `CondicionesGrTrabajo`, `LeyFederalTrabajadores`, `FechaIngreso`, `DiasLabora`, `HorarioStart`, `HorarioEnd`, `LugarFormNoRg`, `NS`, `Observaciones`) VALUES
-            ('$Folio','$FechaInit', '$FechaFin','$NombreE', '$RFC', '$TipoContrato','$SS','$Adscrito', '$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso', '$DiasLabora', '$HorarioStart', '$HorarioEnd', '$LugarFormNoRg', '$NS', '$Observaciones')";
+            ('119','$FechaInit', '$FechaFin','$NombreE', '$RFC', '$TipoContrato','$SS','$Adscrito', '$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso', '$DiasLabora', '$HorarioStart', '$HorarioEnd', '$LugarFormNoRg', '$NS', '$Observaciones')";
             $dataInsert = mysqli_query($conexion, $sendData6);
             break;
     }

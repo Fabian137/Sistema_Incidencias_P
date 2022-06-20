@@ -3,7 +3,11 @@ APLICAR CONSULTA A BASE DE DATOS UTILIZANDO JOINS
 
 EN LUGAR DE SEGUIR CON MIS MALAS PRÁCTICAS
 
+$( document ).ready(function() {
+  $('#myModal').modal('toggle')
+});
 */
+
 var TiempoOrdinario=[
     {"Stuf" : "OMISIÓN DE ENTRADA"},
     {"Stuf" : "OMISIÓN DE SALIDA"},

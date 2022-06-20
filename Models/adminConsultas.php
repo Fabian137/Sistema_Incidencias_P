@@ -1,5 +1,7 @@
 <?php
 include_once('db.php');
+include_once('adminPlantillas.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,27 +25,32 @@ include_once('db.php');
 
     </header>
 
-        <!-- Modal HTML -->
-        <div id="myModal" class="modal fade">
+          <!-- Modal -->
+          <div id="myModal" class="modal fade">
             <div class="modal-dialog modal-login">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Menu</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body contenedor" style="display:flex; flex-direction:column;">
+                    <div class="modal-body">
                       <button type="button" class="btn btn-outline-primary">
-                        <a href="../login.php" class="btnexit" style="text-decoration: none;">REGISTRO</a>
+                        <a href="https://www.consejeria.cdmx.gob.mx/" class="btnexit" style="text-decoration: none;">CEJUR</a>
                       </button>
-                      <button type="button" class="btn btn-outline-primary" style="margin-top: 0.8rem;">
-                        <a href="Models/s-interfaz.php" class="btnexit" style="text-decoration: none;">Altas</a>
+                      <button type="button" class="btn btn-outline-primary">
+                        <a href="https://rppapps.consejeria.cdmx.gob.mx/scg_deaV3/index.php?login=1&failure=5" class="btnexit" style="text-decoration: none;">Control de Gestión</a>
                       </button>
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Directorio Tolsa</button>
                     </div>
                 </div>
             </div>
         </div>
 
+        
+
         <form class="contenedor row g-4 center" action="adminConsultas.php" method="post" id="formPend" autocomplete="off">
+
+        
 
         <div class="col-md-3 contenedor" style="margin-top:1rem; text-align: center;">
             <h6 for="validationDefault04" class="form-label">FOLIO</h6>
@@ -55,50 +62,71 @@ include_once('db.php');
             <input class="btn btn-primary" style="width:10rem;" name="consult" type="submit" value="Consultar"><br>
           </div>
         </form>
-        <?php 
-        if(isset($_POST['consult'])){
-            $ID_folio = $_POST["ID_folio"];
-            $infoFolio= "SELECT * FROM data WHERE ID_folio=$ID_folio";
-            $infoFolio_result= mysqli_query($conexion, $infoFolio);
-            while ($show_infoFolio = mysqli_fetch_array($infoFolio_result)){
-                echo var_dump($show_infoFolio);
-            ?>
+        <?php
+        if($_POST['consult']){
+            $Dependencia = $_POST["Dependencia"];
+            $folNum = $_POST["ID_folio"];
 
-        <section class="contenedor row">
-            <h6>FOLIO: <?php echo $show_infoFolio['ID_folio'] ?></h6>
-            <h6 class="top-space center">DOCUMENTO MÚLTIPLE DE INCIDENCIAS</h6>
-            <p>SOLICITO SE TRAMITE LO SEÑALADO A CONTINUACIÓN, CORRESPONDIENTE AL:  DEL <?php echo $show_infoFolio['DayInit']?> AL <?php echo $show_infoFolio['FechaFin']?></p>
-            <br>
-            <p>RESPECTO DEL (A)C. <?php echo $show_infoFolio['NombreE']?></p>
+            var_dump($folNum);
+            var_dump();
 
-            <p class="col-md-4">RFC: <?php echo $show_infoFolio['RFC']?></p>
-            <p class="col-md-4">TIPO DE CONTRATO-No. DE EMPLEADO(A): <?php echo $show_infoFolio['TipoContrato']?></p>
-            <p class="col-md-4">SEC. SIN. <?php echo $show_infoFolio['SS']?></p>
+            $arr1 = str_split($folNum, 2);
+            switch($arr1[0]){
+                case '21':
+                $DEJC_info= "SELECT * FROM DEJC WHERE CONCAT(Folio, ID_folio)=$folNum";
+                $infoQuery= mysqli_query($conexion, $DEJC_info);
+                while ($show_info = mysqli_fetch_array($infoQuery)){
+                    infoDependencia($show_info);
+                }
+                break;
 
-            <p class="col-md-4">ADSCRITO(A) A: <?php echo $show_infoFolio['Adscrito']?></p>
-        <hr>
-            <h6 class="center">CONDICIONES GENERALES DEL TRABAJO DEL G.D.F.</h6>
-            <p class="col-md-12"><?php echo $show_infoFolio['CondicionesGrTrabajo']?></p>
-        <hr>
-            <h6 class="center">LEY FEDERAL DE LOS TRABAJADORES AL SERVICIO DEL ESTADO</h6>
-            <p class="col-md-12"><?php echo $show_infoFolio['LeyFederalTrabajadores']?></p>
-        <hr>
-            <p class="col-md-4">FECHA DE INGRESO:<?php echo $show_infoFolio['FechaIngreso']?></p>
-            <p class="col-md-4">DÍAS QUE LABORA: <?php echo $show_infoFolio['DiasLabora']?></p>
-            <p class="col-md-4">HORARIO: <?php echo $show_infoFolio['HorarioStart']?> A <?php echo $show_infoFolio['HorarioEnd']?></p>
-            <p class="col-md-12">LUGAR FORMA Y NÚMERO DE REGISTRO</p>
-            <p class="col-md-12">N.S.</p>
-        </section>
+                case "27":
+                $DGRPPC_info= "SELECT * FROM DGRPPC WHERE CONCAT(Folio, ID_folio)=$folNum";
+                $infoQuery= mysqli_query($conexion, $DGRPPC_info);
+                while ($show_info = mysqli_fetch_array($infoQuery)){
+                    infoDependencia($show_info);
+                }
+                
+                break;
+                
+                case '37':
+                $DGRT_info= "SELECT * FROM DGRT WHERE CONCAT(Folio, ID_folio)=$folNum";
+                $infoQuery= mysqli_query($conexion, $DGRT_info);
+                while ($show_info = mysqli_fetch_array($infoQuery)){
+                    infoDependencia($show_info);
+                }
+                break;
+
+                case "38":
+                $DGJEL_info= "SELECT * FROM DGJEL WHERE CONCAT(Folio, ID_folio)=$folNum";
+                $infoQuery= mysqli_query($conexion, $DGJEL_info);
+                while ($show_info = mysqli_fetch_array($infoQuery)){
+                    infoDependencia($show_info);
+                }
+                break;
+
+                case "39":
+                $DGSL_info= "SELECT * FROM DGSL WHERE CONCAT(Folio, ID_folio)=$folNum";
+                $infoQuery= mysqli_query($conexion, $DGSL_info);
+                while ($show_info = mysqli_fetch_array($infoQuery)){
+                    infoDependencia($show_info);
+                }
+                break;
+
+                case "11":
+                $DGRC_info= "SELECT * FROM DGRC WHERE CONCAT(Folio, ID_folio)=$folNum";
+                $infoQuery= mysqli_query($conexion, $DGRC_info);
+                while ($show_info = mysqli_fetch_array($infoQuery)){
+                    infoDependencia($show_info);
+                }
+                break;
+
+            }
+            
+         }
+         ?>
 
 
-
-
-
-
-    <?php
-        }
-    }
-    ?>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -107,5 +135,6 @@ include_once('db.php');
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <!--<script src="/assets/JS/directorio.js"></script>-->  
    <script src="../assets/JS/inf.js"></script>
+   
 </body>
 </html>
