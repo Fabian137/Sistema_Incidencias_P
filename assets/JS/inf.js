@@ -3,8 +3,33 @@ APLICAR CONSULTA A BASE DE DATOS UTILIZANDO JOINS
 
 EN LUGAR DE SEGUIR CON MIS MALAS PRÁCTICAS
 
-$( document ).ready(function() {
-  $('#myModal').modal('toggle')
+
+
+$(document).ready(function () {
+  $('#submit').on('click', function(e) {
+    e.preventDefault();
+    $('#staticBackdrop').modal('show');
+  });
+  
+});
+
+/*
+
+$(document).ready(function () {
+  $('#submit').on('click', function(){
+    $('#staticBackdrop').modal("show");
+  });
+  setTimeout(function() {
+    $('#staticBackdrop').modal('hide');
+  }, 3000));
+});
+
+$(document).ready(function () {
+  $('#submit').on('click', function(e) {
+    e.preventDefault();
+    $('#staticBackdrop').modal('show');
+  });
+  
 });
 */
 
@@ -82,7 +107,7 @@ for(i=0; i<TiempoOrdinario.length; i++){
   var Info = TiempoOrdinario[i]
   InputShow.innerHTML += `
   <div class="form-check top-space">
-  <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="" value="${Info.Stuf}">
+  <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="TO${i}" value="${Info.Stuf}">
   <label class="form-check-label" for="CondicionesGrTrabajo">
   ${Info.Stuf}
   </label>
@@ -139,7 +164,7 @@ for(i=0; i<TiempoOrdinario.length; i++){
       var Info_i = ExReAsi[i]
       exra.innerHTML += `
       <div class="form-check top-space">
-      <input class="form-check-input" type="radio" name="LeyFederalTrabajadores" id="" value="${Info_i.Stuf}">
+      <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="" value="${Info_i.Stuf}">
       <label class="form-check-label" for="">
       ${Info_i.Stuf}</label>
     </div><br>`
@@ -148,7 +173,7 @@ for(i=0; i<TiempoOrdinario.length; i++){
       var Info_i = Art43[i]
       art.innerHTML += `
       <div class="form-check top-space">
-      <input class="form-check-input" type="radio" name="LeyFederalTrabajadores" id="" value="${Info_i.Stuf}">
+      <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="" value="${Info_i.Stuf}">
       <label class="form-check-label" for="">
       ${Info_i.Stuf}</label>
       </div> <br>`
@@ -157,7 +182,7 @@ for(i=0; i<TiempoOrdinario.length; i++){
       var Info_i = vacation[i]
       vacations.innerHTML += `
       <div class="form-check top-space">
-      <input class="form-check-input" type="radio" name="LeyFederalTrabajadores" id="" value="${Info_i.Stuf}">
+      <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="" value="${Info_i.Stuf}">
       <label class="form-check-label" for="">
       ${Info_i.Stuf}</label>
     </div><br>`
@@ -166,7 +191,7 @@ for(i=0; i<TiempoOrdinario.length; i++){
       var Info_i = incapacidad[i]
       incap.innerHTML += `
       <div class="form-check top-space">
-      <input class="form-check-input" type="radio" name="LeyFederalTrabajadores" id="" value="${Info_i.Stuf}">
+      <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="" value="${Info_i.Stuf}">
       <label class="form-check-label" for="">
       ${Info_i.Stuf}</label>
     </div><br>`
@@ -178,3 +203,4 @@ var diasSelect = document.querySelector('select.form-select.dias');
    diasSelect.innerHTML += `
    <option value="${i}">${i}</option>`
  }
+

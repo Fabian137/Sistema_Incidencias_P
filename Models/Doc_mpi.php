@@ -1,5 +1,6 @@
 <?php
 include_once('db.php');
+//include_once();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,13 +15,17 @@ include_once('db.php');
 </head>
 <body>
 
-    <header style="height: 15vh; background-color: rgb(232, 230, 224);">
+    <header style="">
 
-                <div class="center contenedor" style="justify-content: space-between; align-items: center;">
-                    <!--<div class="musirech"><a href="index.html"><h1>MUSIRECH</h1></a></div>-->
-                    <a href="../login.php" class="logo"></a>
-                    <h6>
-                    </h6>
+        <nav class="colorfont" style="display: flex; justify-content: space-around;
+        align-items: center;">
+        <a href="../../login.php" style="text-decoration: none;" class="logo"></a>
+        <a href="../../login.php" style="text-decoration: none;" class="tituloH">Levantamiento de Incidencias</a>
+         <a href="../../login.php" style="text-decoration: none;" class="logo2"></a>
+         <div class="nav-wrapper cont">
+           <div class="naveg"></div>
+           </div> 
+        </nav>
 
     </header>
 
@@ -85,7 +90,7 @@ include_once('db.php');
                         case "DGRT":
                             NumFolioDependencia.innerHTML = `
                          <select class="forId" name="folio" style="width: 100%;">
-                         <option value="27">27</option>
+                         <option value="37">37</option>
                          </select>`;
                         break;
                         case "DGJEL":
@@ -109,19 +114,6 @@ include_once('db.php');
                     }
                   });
             </script>
-            <?php
-            //if($conexion){//adminFa137*
-              /*  $consulta2= "SELECT MAX(ID_folio) FROM data";
-                $datos2= mysqli_query($conexion, $consulta2);
-                //var_dump($show);
-                while ($show2 = mysqli_fetch_array($datos2)){
-                    //var_dump($show2);
-                    $newFolio = $show2 ['MAX(ID_folio)'] + 1;*/
-                    //var_dump($newFolio);     
-            
-                //}
-          //  }
-            ?>
             </div>
     </div>
     
@@ -140,11 +132,11 @@ include_once('db.php');
             <p class="col-md-6"></p>
             <div class="col-md-6 top-space form-inline">
                 <label class="form-label" for="start">RESPECTO DEL (A)C.</label>
-                <input class="form-control" type="text" id="" name="NombreE" >
+                <input class="form-control" type="text" id="" name="NombreE" require>
             </div>
             <div class="col-md-4 top-space form-inline">
                 <label class="form-label" for="start">R.F.C</label>
-                <input class="form-control" type="text" id="" name="RFC">
+                <input class="form-control" type="text" id="" name="RFC" require>
             </div>
             <div class="col-md-5 top-space form-inline">
                 <label class="form-label" for="start">TIPO DE CONTRATO- No. DE EMPLEADO(A)</label>
@@ -217,7 +209,7 @@ include_once('db.php');
             <br>
             <div class="col-md-4 form-inline">
                 <label class="form-label" for="start">FECHA DE INGRESO</label>
-                <input class="form-control" type="date" id="date" name="FechaIngreso" min="2022-01-01" max="2025-12-31"> 
+                <input class="form-control" type="date" id="date" name="FechaIngreso" min="2000-01-01" max="2035-12-31" style="width: 55%;"> 
             </div>
             <div class="col-md-4 form-inline" style="justify-content: space-around;">
                 <label style="margin:0;" for="validationDefault04" class="form-label">DÍAS QUE LABORA</label>
@@ -243,11 +235,62 @@ include_once('db.php');
         </section>
 
         <div class="col-12" style="margin:2.5rem 0; display: flex;justify-content: center;">
-          <input class="btn btn-primary" style="width:10rem;" id="send" name="send" type="submit" value="Enviar"><br>
+         <!--
+            <input class="btn btn-primary" style="width:10rem;" id="send" name="send" type="submit" value="Enviar"><br>
+        -->
+         <button id="submit" class="btn btn-primary" style="width:10rem;"  name="send" type="submit" value="Enviar">Enviar</button>
         </div>
     </form>
     
-    
+    <div class="auto" id="auto" style="display: none">
+  Oculta
+</div>                                                                                                              
+
+<!-- Button trigger modal -->
+<!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Launch static backdrop modal
+</button>-->
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <script>
+            var Folio = document.getElementById('numberFolio').textContent;
+            console.log(Folio);
+        </script>
+          <?php
+
+/*
+        $Dependencia = $_POST["Dependencia"];
+        $Folio = $_POST["folio"];
+        $NombreE = $_POST["NombreE"];
+        $RFC = $_POST["RFC"];
+        $LeyFederalTrabajadores = $_POST["LeyFederalTrabajadores"]; 
+        
+        $folioNumber = "SELECT CONCAT( Folio, ID_Folio ) AS Result FROM $Dependencia WHERE RFC='$RFC' AND CondicionesGrTrabajo = '$CondicionesGrTrabajo' OR LeyFederalTrabajadores = '$LeyFederalTrabajadores'";
+        $infoQuery= mysqli_query($conexion, $folioNumber);
+        while ($show_info = mysqli_fetch_array($infoQuery)){
+            echo '<h6 id="numberFolio">Número de folio: '.$show_info['Result'].'</h6>';
+        }
+        
+        
+        getFolio();
+        */
+        ?>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Understood</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -291,51 +334,28 @@ if($_POST['send']){
     */
     $dataInsert = mysqli_query($conexion, $sendData);
 
-    /*
-     switch ($Dependencia) {
-        case "DEJC":
-            $sendData3 = "INSERT INTO `DEJC` (`Folio`, `FechaInit`, `FechaFin`, `NombreE`, `RFC`, `TipoContrato`, `SS`, `Adscrito`, `CondicionesGrTrabajo`, `LeyFederalTrabajadores`, `FechaIngreso`, `DiasLabora`, `HorarioStart`, `HorarioEnd`, `LugarFormNoRg`, `NS`, `Observaciones`) VALUES
-            ('21','$FechaInit', '$FechaFin','$NombreE', '$RFC', '$TipoContrato','$SS','$Adscrito', '$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso', '$DiasLabora', '$HorarioStart', '$HorarioEnd', '$LugarFormNoRg', '$NS', '$Observaciones')";
-
-            $dataInsert = mysqli_query($conexion, $sendData3);
-
-            
-            
-            
-            break;
-        case "DGRPPC":
-            $sendData2 = "INSERT INTO `DGRPPC` (`Folio`, `FechaInit`, `FechaFin`, `NombreE`, `RFC`, `TipoContrato`, `SS`, `Adscrito`, `CondicionesGrTrabajo`, `LeyFederalTrabajadores`, `FechaIngreso`, `DiasLabora`, `HorarioStart`, `HorarioEnd`, `LugarFormNoRg`, `NS`, `Observaciones`) VALUES
-            ('27','$FechaInit', '$FechaFin','$NombreE', '$RFC', '$TipoContrato','$SS','$Adscrito', '$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso', '$DiasLabora', '$HorarioStart', '$HorarioEnd', '$LugarFormNoRg', '$NS', '$Observaciones')";
-           // $dataInsert2 = mysqli_query($conexion, $sendData2);
-            break;
-        case "DGRT":
-            $sendData4 = "INSERT INTO `DGRT` (`Folio`, `FechaInit`, `FechaFin`, `NombreE`, `RFC`, `TipoContrato`, `SS`, `Adscrito`, `CondicionesGrTrabajo`, `LeyFederalTrabajadores`, `FechaIngreso`, `DiasLabora`, `HorarioStart`, `HorarioEnd`, `LugarFormNoRg`, `NS`, `Observaciones`) VALUES
-            ('37','$FechaInit', '$FechaFin','$NombreE', '$RFC', '$TipoContrato','$SS','$Adscrito', '$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso', '$DiasLabora', '$HorarioStart', '$HorarioEnd', '$LugarFormNoRg', '$NS', '$Observaciones')";
-//$dataInsert = mysqli_query($conexion, $sendData4);
-            break;
-        case "DGJEL":
-            $sendData5 = "INSERT INTO `DGJEL` (`Folio`, `FechaInit`, `FechaFin`, `NombreE`, `RFC`, `TipoContrato`, `SS`, `Adscrito`, `CondicionesGrTrabajo`, `LeyFederalTrabajadores`, `FechaIngreso`, `DiasLabora`, `HorarioStart`, `HorarioEnd`, `LugarFormNoRg`, `NS`, `Observaciones`) VALUES
-            ('38','$FechaInit', '$FechaFin','$NombreE', '$RFC', '$TipoContrato','$SS','$Adscrito', '$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso', '$DiasLabora', '$HorarioStart', '$HorarioEnd', '$LugarFormNoRg', '$NS', '$Observaciones')";
-           // $dataInsert = mysqli_query($conexion, $sendData5);
-            break;
-        case "DGSL":
-            $sendData5 = "INSERT INTO `DGSL` (`Folio`, `FechaInit`, `FechaFin`, `NombreE`, `RFC`, `TipoContrato`, `SS`, `Adscrito`, `CondicionesGrTrabajo`, `LeyFederalTrabajadores`, `FechaIngreso`, `DiasLabora`, `HorarioStart`, `HorarioEnd`, `LugarFormNoRg`, `NS`, `Observaciones`) VALUES
-            ('39','$FechaInit', '$FechaFin','$NombreE', '$RFC', '$TipoContrato','$SS','$Adscrito', '$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso', '$DiasLabora', '$HorarioStart', '$HorarioEnd', '$LugarFormNoRg', '$NS', '$Observaciones')";
-           // $dataInsert = mysqli_query($conexion, $sendData5);
-            break;
-        case "DGRC":
-            $sendData6 = "INSERT INTO `DGRC` (`Folio`, `FechaInit`, `FechaFin`, `NombreE`, `RFC`, `TipoContrato`, `SS`, `Adscrito`, `CondicionesGrTrabajo`, `LeyFederalTrabajadores`, `FechaIngreso`, `DiasLabora`, `HorarioStart`, `HorarioEnd`, `LugarFormNoRg`, `NS`, `Observaciones`) VALUES
-            ('119','$FechaInit', '$FechaFin','$NombreE', '$RFC', '$TipoContrato','$SS','$Adscrito', '$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso', '$DiasLabora', '$HorarioStart', '$HorarioEnd', '$LugarFormNoRg', '$NS', '$Observaciones')";
-          //  $dataInsert = mysqli_query($conexion, $sendData6);
-            break;
-    }
-*/
-    $folioNumber = "SELECT CONCAT( Folio, ID_Folio ) AS Result FROM $Dependencia WHERE RFC='$RFC' AND CondicionesGrTrabajo = '$CondicionesGrTrabajo' OR LeyFederalTrabajadores = '$LeyFederalTrabajadores'";
+    if($dataInsert){
+            $folioNumber = "SELECT CONCAT( Folio, ID_Folio ) AS Result FROM $Dependencia WHERE RFC='$RFC' AND CondicionesGrTrabajo = '$CondicionesGrTrabajo' OR LeyFederalTrabajadores = '$LeyFederalTrabajadores'";
             $infoQuery= mysqli_query($conexion, $folioNumber);
                 while ($show_info = mysqli_fetch_array($infoQuery)){
-                   echo $show_info['Result'];
-                   echo '<h6>'.$show_info['Result'].'</h6>';
-  
+                    //ModalInvocation($show_info);
+                    echo '<h6 id="numberFolio">Número de folio: '.$show_info['Result'].'</h6>';
                 }
+        //WTF  
+
+        echo "
+        <script>
+        $( document ).ready(function() {
+            $('#staticBackdrop').modal('show')
+        });
+        </script>
+        ";
+
+    }
+    
+
+
+   
+            
     }
 ?>

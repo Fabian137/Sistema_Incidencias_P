@@ -79,7 +79,7 @@ ul{list-style: none;}
 
 @font-face {
   font-family: 'Gotham';
-  src: url('GothamBold.ttf') format('truetype');
+  src: url('../GothamBold.ttf') format('truetype');
   font-style: normal;
   font-weight: normal;
 }
@@ -91,22 +91,23 @@ ul{list-style: none;}
 }
 /*TEMPLATE NAV*/
 .logo {
-  width: 22rem;
+  width: 20rem;
+  margin-right: 5%;
   background-image: url(../img/cdmxLogo.png);
   height: 5rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
-/*.logo2{
+.logo2 {
   width: 19rem;
-  margin-left:2%;
+  margin-left: 2%;
   background-image: url(../img/tolsaTextLogo.png);
   height: 5rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-}*/
+}
 
 h6 {
   color: #75293d;
@@ -181,4 +182,11 @@ section.contenedor.row.g-3 p {
 }
 .form-check{
   display: contents;
+}
+.form-check-input:checked[type=radio] {
+  background-image: none; 
+}
+.form-check-input:checked {
+  background-color: #781238;
+  border-color: #970d3f;
 }
