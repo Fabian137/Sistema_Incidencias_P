@@ -2,9 +2,10 @@
 
 function infoDependencia($info){
 
-    echo    '<section class="contenedor row" style="margin: 2rem 20%;">';
-    echo '<h6>NOMBRE:<samp style="font-weight: bolder;" id="nombre">'. $info['NombreE'] .'</samp></h6>';
-    echo        '<h6>FOLIO:<span id="folio">'. $info['Folio'].' '. $info['ID_folio'].'</span></h6>';
+    echo    '<section class="row" style="margin: 1.5rem 9%;">';
+    echo '<h6>NOMBRE:<samp style="font-weight: bolder;" id="nombre"> '. $info['NombreE'] .'</samp></h6>';
+    echo        '<h6>FOLIO:<span id="folio"> '. $info['Folio'].''. $info['ID_folio'].'</span></h6>';
+    echo        '<h6 id="dependencia"> '. $info['Dependencia'].'</h6>';
     echo        '<h6 class="top-space center">DOCUMENTO MÚLTIPLE DE INCIDENCIAS</h6>';
     echo        '<p>SOLICITO SE TRAMITE LO SEÑALADO A CONTINUACIÓN, CORRESPONDIENTE AL:  DEL <samp style="font-weight: bolder;" id="fecha"> '. $info['FechaInit'].' AL '. $info['FechaFin'].'</samp></p>';
     echo        '<br>';
@@ -16,12 +17,33 @@ function infoDependencia($info){
 
     echo        '<p class="col-md-4">ADSCRITO(A) A: <samp style="font-weight: bolder;" id="adscrito">'. $info['Adscrito'].'</samp></p>';
     echo    '<hr>';
+    $incidencia = $info['CondicionesGrTrabajo'];
+    $ValueIncidencia = str_split($incidencia, 3);
+    
+    if($ValueIncidencia[0] == 'LEY'){
+        echo        '<h6 class="center">CONDICIONES GENERALES DEL TRABAJO DEL G.D.F.</h6>';
+        echo        '<p class="col-md-12 "> <samp style="font-weight: bolder;" id="CondicionesTrabajo"></samp></p>';
+        echo    '<hr>';
+        echo        '<h6 class="center">LEY FEDERAL DE LOS TRABAJADORES AL SERVICIO DEL ESTADO</h6>';
+        echo        '<p class="col-md-12"><samp style="font-weight: bolder;" id="LeyFederal">'. $ValueIncidencia[1].''. $ValueIncidencia[2].''. $ValueIncidencia[3].''. $ValueIncidencia[4].''. $ValueIncidencia[5].''. $ValueIncidencia[6].''. $ValueIncidencia[7].''. $ValueIncidencia[8].''. $ValueIncidencia[9].''. $ValueIncidencia[10].''. $ValueIncidencia[11].''. $ValueIncidencia[12].''. $ValueIncidencia[13].'</samp></p>';
+        echo    '<hr>';
+    }
+    else if($ValueIncidencia[0] !== 'LEY'){
+        echo        '<h6 class="center">CONDICIONES GENERALES DEL TRABAJO DEL G.D.F.</h6>';
+    echo        '<p class="col-md-12 "> <samp style="font-weight: bolder;" id="CondicionesTrabajo">'. $incidencia .'</samp></p>';
+    echo    '<hr>';
+
+    echo        '<h6 class="center">LEY FEDERAL DE LOS TRABAJADORES AL SERVICIO DEL ESTADO</h6>';
+        echo        '<p class="col-md-12"><samp style="font-weight: bolder;" id="LeyFederal"> </samp></p>';
+        echo    '<hr>';
+    }
+    /*
     echo        '<h6 class="center">CONDICIONES GENERALES DEL TRABAJO DEL G.D.F.</h6>';
-    echo        '<p class="col-md-12"> <samp style="font-weight: bolder;" id="CondicionesTrabajo">'. $info['CondicionesGrTrabajo'] .'</samp></p>';
+    echo        '<p class="col-md-12 CondicionesTrabajo"> <samp style="font-weight: bolder;" id="CondicionesTrabajo">'. $info['CondicionesGrTrabajo'] .'</samp></p>';
     echo    '<hr>';
     echo        '<h6 class="center">LEY FEDERAL DE LOS TRABAJADORES AL SERVICIO DEL ESTADO</h6>';
     echo        '<p class="col-md-12"><samp style="font-weight: bolder;" id="LeyFederal"> '. $info['LeyFederalTrabajadores'].'</samp></p>';
-    echo    '<hr>';
+    echo    '<hr>';*/
     echo        '<p class="col-md-12">OBSERVACIONES: <samp style="font-weight: bolder;" id="Observaciones">'. $info['Observaciones'] .'</samp></p>';
     echo        '<p class="col-md-4">FECHA DE INGRESO: <samp style="font-weight: bolder;" id="FechaIngreso">'. $info['FechaIngreso'] .'</samp></p>';
     echo        '<p class="col-md-4">DÍAS QUE LABORA: <samp style="font-weight: bolder;" id="DiasLabora">'. $info['DiasLabora'] .'</samp></p>';
@@ -30,39 +52,7 @@ function infoDependencia($info){
     echo        '<p class="col-md-12">N.S.  <samp style="font-weight: bolder;" id="NS"> '. $info['NS'] .'</samp></p>';
     echo    '</section>';
     
-    echo    '<div class="center" style="margin: 2rem 20%;"><button type="submit" class="btn btn-primary mb-4">Generar PDF</button></div>';
+    echo    '<div class="center"><button type="submit" class="btn btn-primary mb-4">Generar PDF</button></div>';
 
     
 }
-
-
-function FolioObtener(){
-    $folioNumber = "SELECT CONCAT( Folio, ID_Folio ) AS Result FROM $Dependencia WHERE RFC='$RFC' AND CondicionesGrTrabajo = '$CondicionesGrTrabajo' OR LeyFederalTrabajadores = '$LeyFederalTrabajadores'";
-    $infoQuery= mysqli_query($conexion, $folioNumber);
-        while ($show_info = mysqli_fetch_array($infoQuery)){
-           echo '<h6 id="numberFolio">Número de folio: '.$show_info['Result'].'</h6>';
-        }
-}
-
-function ModalInvocation($show_info){
-    echo '    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">';
-    echo '  <div class="modal-dialog">';
-    echo '    <div class="modal-content">';
-    echo '      <div class="modal-header">';
-    echo '        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>';
-    echo '        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
-    echo '      </div>';
-    echo '      <div class="modal-body">';
-    
-    echo '<h6 id="numberFolio">Número de folio: '.$show_info['Result'].'</h6>';
-
-    echo '      </div>';
-    echo '      <div class="modal-footer">';
-    echo '          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>';
-    echo '          <button type="button" class="btn btn-primary">Understood</button>';
-    echo '      </div>';
-    echo '    </div>';
-    echo '  </div>';
-    echo '</div>';
-}
-    ?>

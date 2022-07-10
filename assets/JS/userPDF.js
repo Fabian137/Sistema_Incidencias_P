@@ -19,7 +19,10 @@ function loadImage(url) {
 window.addEventListener('load', async () => {
 
     //const form = document.querySelector('#formc');
-   const form = document.getElementById('formPend');
+   var form = document.getElementById('UserForm');
+   if(form){
+
+   
    form.addEventListener('submit', (e) => {
        e.preventDefault();
 
@@ -41,8 +44,13 @@ window.addEventListener('load', async () => {
        var NS = document.getElementById('NS').textContent;
 
        generatePDF(folio, nombre, rfc, fecha, tipoContrato, CondicionesTrabajo, LeyFederal, FechaIngreso, Horarios, ss, Observaciones, NS, adscrito, Place, DiasLabora, dependencia);
-   })
+   
+       console.log("PRIMER CONSOLE");
+    })
 
+}
+
+   console.log("SEGUNDO CONSOLE");
 });
 
 var ConGrTra = [
@@ -81,6 +89,7 @@ var LeyFedTrasSerEs =[
     "OMISIÓN DE ENTRADA",
     "OMISIÓN DE SALIDA",
     "OMISIÓN TOTAL",
+    "ARTÍCULO 43 FRACC. VIII",
     
     "B",
     "E",
@@ -89,12 +98,14 @@ var LeyFedTrasSerEs =[
     "2do. PERIODO 2022",
     "2er. PERIODO 2022",
     "ESTIMULOS Y RECOMPENSAS",
-    "INCAPACIDAD",
+    
     "PROGRAMA PERMISO RETRIBUIDO MATERNIDAD",
     "PATERNIDAD RESPONSABLE"
 ];
 
 async function generatePDF(folio, nombre, rfc, fecha, tipoContrato, CondicionesTrabajo, LeyFederal, FechaIngreso, Horarios, ss, Observaciones, NS, adscrito, Place, DiasLabora, dependencia) {
+
+    console.log('HOLA MUMNNDO');
     const plantillaIMG = await loadImage("../assets/img/INCIDENCIA12022.jpg");
 
     const pdf = new jsPDF('p', 'pt', 'letter');
@@ -110,11 +121,10 @@ async function generatePDF(folio, nombre, rfc, fecha, tipoContrato, CondicionesT
     pdf.text(nombre, 340, 147);
     pdf.text(adscrito, 137, 178);
 
-    pdf.text(dependencia, 470, 50);
-    
-
+    pdf.text(dependencia, 430, 50);
 
     switch(CondicionesTrabajo){
+        //LEY FEDERAL
         case CondicionesTrabajo = ConGrTra[0]:
             pdf.setFillColor(120,18,56);
             pdf.circle(78.5, 226.5, 3.5, 'F');

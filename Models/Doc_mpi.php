@@ -1,6 +1,6 @@
 <?php
 include_once('db.php');
-//include_once();
+include_once('adminPlantillas.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +28,7 @@ include_once('db.php');
         </nav>
 
     </header>
-
+    
     <form class="contenedor row g-3" action="Doc_mpi.php" method="post" style="margin-top:1rem;" autocomplete="off">
         
     <div class="row">
@@ -194,7 +194,7 @@ include_once('db.php');
             <div class="col-md-4 top-space">
                 <p>VACACIONES</p>
                 <div class="vacation" style="margin-top:1rem;"></div>
-                <p class="top-space">INCAPACIDAD</p>
+                <p class="top-space"></p>
                 <div class="incap" style="margin-top:1rem;"></div>
             </div>
         </section>
@@ -207,11 +207,11 @@ include_once('db.php');
                 <textarea class="form-control" type="text" name="Observaciones" style="height:4rem; width:100%; margin-bottom:2rem;"></textarea>
             </div>
             <br>
-            <div class="col-md-4 form-inline">
+            <div class="col-md-3 form-inline">
                 <label class="form-label" for="start">FECHA DE INGRESO</label>
-                <input class="form-control" type="date" id="date" name="FechaIngreso" min="2000-01-01" max="2035-12-31" style="width: 55%;"> 
+                <input class="form-control" type="date" id="date" name="FechaIngreso" min="2000-01-01" max="2035-12-31" style="width: 59%;"> 
             </div>
-            <div class="col-md-4 form-inline" style="justify-content: space-around;">
+            <div class="col-md-5 form-inline" style="justify-content: space-around;">
                 <label style="margin:0;" for="validationDefault04" class="form-label">DÍAS QUE LABORA</label>
                 <select class="form-select" name="DiasLabora" id="" style="width: 55%;">
                   <option value="LUNES A VIERNES">LUNES A VIERNES</option>
@@ -221,8 +221,8 @@ include_once('db.php');
             </div>
             <div class="col-md-4 form-inline">
               <label for="validationDefault03" class="form-label">HORARIO</label>
-              <input class="form-control" type="time" name="HorarioStart" style="width: 30%;"><p>A</p>
-              <input class="form-control" type="time" name="HorarioEnd" style="width: 30%;">
+              <input class="form-control" type="time" name="HorarioStart" style="width: 35%;"><p>A</p>
+              <input class="form-control" type="time" name="HorarioEnd" style="width: 35%;">
             </div>
             <div class="col-md-9 form-inline top-space">
                 <label class="form-label" for="start">LUGAR Y FORMA Y NÚMERO DE REGISTRO: </label>
@@ -238,59 +238,18 @@ include_once('db.php');
          <!--
             <input class="btn btn-primary" style="width:10rem;" id="send" name="send" type="submit" value="Enviar"><br>
         -->
-         <button id="submit" class="btn btn-primary" style="width:10rem;"  name="send" type="submit" value="Enviar">Enviar</button>
+         <button id="submit" class="btn btn-primary" style="width:10rem;" name="send" type="submit" value="Enviar">Enviar</button>
         </div>
     </form>
     
-    <div class="auto" id="auto" style="display: none">
-  Oculta
-</div>                                                                                                              
+    <script>
+        if (window.history.replaceState) { 
+            window.history.replaceState(null, null, window.location.href); }
+            // verificamos disponibilidad 
+    </script>
 
-<!-- Button trigger modal -->
-<!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Launch static backdrop modal
-</button>-->
-
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <script>
-            var Folio = document.getElementById('numberFolio').textContent;
-            console.log(Folio);
-        </script>
-          <?php
-
-/*
-        $Dependencia = $_POST["Dependencia"];
-        $Folio = $_POST["folio"];
-        $NombreE = $_POST["NombreE"];
-        $RFC = $_POST["RFC"];
-        $LeyFederalTrabajadores = $_POST["LeyFederalTrabajadores"]; 
-        
-        $folioNumber = "SELECT CONCAT( Folio, ID_Folio ) AS Result FROM $Dependencia WHERE RFC='$RFC' AND CondicionesGrTrabajo = '$CondicionesGrTrabajo' OR LeyFederalTrabajadores = '$LeyFederalTrabajadores'";
-        $infoQuery= mysqli_query($conexion, $folioNumber);
-        while ($show_info = mysqli_fetch_array($infoQuery)){
-            echo '<h6 id="numberFolio">Número de folio: '.$show_info['Result'].'</h6>';
-        }
-        
-        
-        getFolio();
-        */
-        ?>
-      </div>
-      <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Understood</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- 
+-->
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -298,7 +257,9 @@ include_once('db.php');
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <!--<script src="/assets/JS/directorio.js"></script>-->  
+    <script src="../../jspdf.min.js"></script>
    <script src="../assets/JS/inf.js"></script>
+   <script src="../assets/JS/userPDF.js"></script>
 </body>
 </html>
 
@@ -325,37 +286,54 @@ if($_POST['send']){
     $Observaciones = $_POST["Observaciones"];
     
     
-    $sendData = "INSERT INTO `$Dependencia` (`Folio`, `FechaInit`, `FechaFin`, `NombreE`, `RFC`, `TipoContrato`, `SS`, `Adscrito`, `CondicionesGrTrabajo`, `LeyFederalTrabajadores`, `FechaIngreso`, `DiasLabora`, `HorarioStart`, `HorarioEnd`, `LugarFormNoRg`, `NS`, `Observaciones`) VALUES
-            ('$Folio','$FechaInit', '$FechaFin','$NombreE', '$RFC', '$TipoContrato','$SS','$Adscrito', '$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso', '$DiasLabora', '$HorarioStart', '$HorarioEnd', '$LugarFormNoRg', '$NS', '$Observaciones')";
+    $sendData = "INSERT INTO `$Dependencia` (`Folio`, `Dependencia`, `FechaInit`, `FechaFin`, `NombreE`, `RFC`, `TipoContrato`, `SS`, `Adscrito`, `CondicionesGrTrabajo`, `LeyFederalTrabajadores`, `FechaIngreso`, `DiasLabora`, `HorarioStart`, `HorarioEnd`, `LugarFormNoRg`, `NS`, `Observaciones`) VALUES
+            ('$Folio', '$Dependencia','$FechaInit', '$FechaFin','$NombreE', '$RFC', '$TipoContrato','$SS','$Adscrito', '$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso', '$DiasLabora', '$HorarioStart', '$HorarioEnd', '$LugarFormNoRg', '$NS', '$Observaciones')";
 
-    
-   /* PODRIA REDUCIR LA CANTIDAD DE CODIGO
-    INVESTIGAR COMO CAMBIAR EL VALUE DE UN SELECT CON JS E INNERHTML  LESTO
-    */
     $dataInsert = mysqli_query($conexion, $sendData);
 
+
     if($dataInsert){
-            $folioNumber = "SELECT CONCAT( Folio, ID_Folio ) AS Result FROM $Dependencia WHERE RFC='$RFC' AND CondicionesGrTrabajo = '$CondicionesGrTrabajo' OR LeyFederalTrabajadores = '$LeyFederalTrabajadores'";
+        echo '<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">';
+        echo '<div class="modal-dialog modal-lg">';
+        echo '    <div class="modal-content">';
+        echo '      <div class="modal-header">';
+        echo '        <h5 class="modal-title" id="staticBackdropLabel"> FOLIO';
+        echo '        </h5>';
+        echo '        <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" href="Doc_mpi.php"></a>';
+        echo '      </div>';
+        echo '      <div class="modal-body">';
+        $folioNumber = "SELECT CONCAT( Folio, ID_Folio ) AS Result FROM $Dependencia WHERE RFC='$RFC' AND CondicionesGrTrabajo = '$CondicionesGrTrabajo' OR LeyFederalTrabajadores = '$LeyFederalTrabajadores' AND FechaInit = '$FechaInit'";
             $infoQuery= mysqli_query($conexion, $folioNumber);
                 while ($show_info = mysqli_fetch_array($infoQuery)){
-                    //ModalInvocation($show_info);
-                    echo '<h6 id="numberFolio">Número de folio: '.$show_info['Result'].'</h6>';
+                    echo '<input id="idFolio" style="display: none" value="'.$show_info['Result'].'"'.$show_info['Result'].'">'.$show_info['Result'].'</input>';
+                    
                 }
-        //WTF  
-
-        echo "
-        <script>
-        $( document ).ready(function() {
-            $('#staticBackdrop').modal('show')
-        });
-        </script>
-        ";
-
+                $IncidenciaInfoForPDF= "SELECT * FROM $Dependencia WHERE RFC='$RFC' AND CondicionesGrTrabajo = '$CondicionesGrTrabajo' OR LeyFederalTrabajadores = '$LeyFederalTrabajadores' AND FechaInit = '$FechaInit'";
+                
+                $PDFinfo= mysqli_query($conexion, $IncidenciaInfoForPDF);
+                while ($info = mysqli_fetch_array($PDFinfo)){
+                    echo '<form action="" method="post" id="UserForm" autocomplete="off">';
+                    infoDependencia($info);
+                    echo '</form>';
+                }
+        echo '      </div>';
+        echo '      <div class="modal-footer">';
+        
+        echo '            <a  type="button" class="btn btn-secondary" href="Doc_mpi.php">CERRAR</a>';
+        echo '      </div>';
+        echo '    </div>';
+        echo '  </div>';
+        echo '</div>';
     }
-    
 
-
-   
+    echo "
+    <script>
+    $( document ).ready(function() {
+        $('#staticBackdrop').modal('show')
+    });
+    </script>
+      
+    ";
             
     }
 ?>

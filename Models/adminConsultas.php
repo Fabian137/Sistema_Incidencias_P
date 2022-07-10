@@ -101,6 +101,41 @@ include_once('adminPlantillas.php');
             
          }
          ?>
+         <script>
+/*
+var LeyFedTrasSerEs =[
+            "OMISIÓN DE ENTRADA",
+            "OMISIÓN DE SALIDA",
+            "OMISIÓN TOTAL",
+            "ARTÍCULO 43 FRACC. VIII",
+
+            "B",
+            "E",
+
+            "1er. PERIODO 2022",
+            "2do. PERIODO 2022",
+            "2er. PERIODO 2022",
+            "ESTIMULOS Y RECOMPENSAS",
+
+            "PROGRAMA PERMISO RETRIBUIDO MATERNIDAD",
+            "PATERNIDAD RESPONSABLE"
+        ];
+            var IncidenciaShow = document.getElementById('LeyFederal')
+            var IncidenciaDelete = document.querySelector('.CondicionesTrabajo');
+            var Incidencia = document.getElementById('CondicionesTrabajo').textContent;
+            const ValueIncidencia = Incidencia;
+
+
+            for(i=0; i<LeyFedTrasSerEs.length; i++){
+                if(Incidencia = LeyFedTrasSerEs[i]){
+                    console.log(ValueIncidencia);
+                    IncidenciaShow.innerHTML += `${ValueIncidencia}`
+                    IncidenciaDelete.style.display='none';
+                }
+            }
+            */
+            
+         </script>
 </form>
 
     

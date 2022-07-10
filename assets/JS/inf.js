@@ -37,30 +37,30 @@ var TiempoOrdinario=[
     {"Stuf" : "OMISIÓN DE ENTRADA"},
     {"Stuf" : "OMISIÓN DE SALIDA"},
     {"Stuf" : "OMISIÓN TOTAL"},
-    {"Stuf" : "ATÍCULO 70 FRACC. I"},
-    {"Stuf" : "ATÍCULO 70 FRACC. II"},
-    {"Stuf" : "ATÍCULO 70 FRACC. VI"},
+    {"Stuf" : "ARTÍCULO 70 FRACC. I"},
+    {"Stuf" : "ARTÍCULO 70 FRACC. II"},
+    {"Stuf" : "ARTÍCULO 70 FRACC. VI"},
 ];
 var HorarioEspecial=[
-    {"Stuf" : "ATÍCULO 58"},
-    {"Stuf" : "ATÍCULO 72"},
-    {"Stuf" : "ATÍCULO 97 (FRACC. I, II, III, V)"}
+    {"Stuf" : "ARTÍCULO 58"},
+    {"Stuf" : "ARTÍCULO 72"},
+    {"Stuf" : "ARTÍCULO 97 (FRACC. I, II, III, V)"}
 ]
 var Horarios=[
-    {"Stuf" : "ATÍCULO 59"},
-    {"Stuf" : "ATÍCULO 66"}
+    {"Stuf" : "ARTÍCULO 59"},
+    {"Stuf" : "ARTÍCULO 66"}
 ]
 var LicenciaSueldo=[
-    {"Stuf" : "ATÍCULO 87"},
-    {"Stuf" : "ATÍCULO 88"},
-    {"Stuf" : "ATÍCULO 89"},
-    {"Stuf" : "ATÍCULO 91 (LICENCIA MATERNIDAD)"},
-    {"Stuf" : "ATÍCULO 91 (CUIDADOS MATERNOS)"},
-    {"Stuf" : "ATÍCULO 92 JUBILACIÓN"},
-    {"Stuf" : "ATÍCULO 127 NOTA BUENA"}
+    {"Stuf" : "ARTÍCULO 87"},
+    {"Stuf" : "ARTÍCULO 88"},
+    {"Stuf" : "ARTÍCULO 89"},
+    {"Stuf" : "ARTÍCULO 91 (LICENCIA MATERNIDAD)"},
+    {"Stuf" : "ARTÍCULO 91 (CUIDADOS MATERNOS)"},
+    {"Stuf" : "ARTÍCULO 92 JUBILACIÓN"},
+    {"Stuf" : "ARTÍCULO 127 NOTA BUENA"}
 ]
 var LicenciaSinSueldo=[
-  {"Stuf" : "ATÍCULO 93 FRACC. (I, II)"}
+  {"Stuf" : "ARTÍCULO 93 FRACC. (I, II)"}
 ]
 var Vacaciones=[
   {"Stuf" : "1er. PERIODO 2022"},
@@ -82,10 +82,11 @@ var Art43=[
 var vacation=[
   {"Stuf" : "1er. PERIODO 2022"},
   {"Stuf" : "2do. PERIODO 2022"},
-  {"Stuf" : "2er. PERIODO 2022"},
+  {"Stuf" : "3er. PERIODO 2022"},
   {"Stuf" : "ESTIMULOS Y RECOMPENSAS"}
 ]
 var incapacidad=[
+  {"Stuf" : "INCAPACIDAD"},
   {"Stuf" : "PROGRAMA PERMISO RETRIBUIDO MATERNIDAD"},
   {"Stuf" : "PATERNIDAD RESPONSABLE"}
 ]
@@ -164,7 +165,7 @@ for(i=0; i<TiempoOrdinario.length; i++){
       var Info_i = ExReAsi[i]
       exra.innerHTML += `
       <div class="form-check top-space">
-      <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="" value="${Info_i.Stuf}">
+      <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="ExReAsi" value="LEY${Info_i.Stuf}">
       <label class="form-check-label" for="">
       ${Info_i.Stuf}</label>
     </div><br>`
@@ -173,7 +174,7 @@ for(i=0; i<TiempoOrdinario.length; i++){
       var Info_i = Art43[i]
       art.innerHTML += `
       <div class="form-check top-space">
-      <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="" value="${Info_i.Stuf}">
+      <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="Art43" value="LEY${Info_i.Stuf}">
       <label class="form-check-label" for="">
       ${Info_i.Stuf}</label>
       </div> <br>`
@@ -182,7 +183,7 @@ for(i=0; i<TiempoOrdinario.length; i++){
       var Info_i = vacation[i]
       vacations.innerHTML += `
       <div class="form-check top-space">
-      <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="" value="${Info_i.Stuf}">
+      <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="vacation" value="LEY${Info_i.Stuf}">
       <label class="form-check-label" for="">
       ${Info_i.Stuf}</label>
     </div><br>`
@@ -191,7 +192,7 @@ for(i=0; i<TiempoOrdinario.length; i++){
       var Info_i = incapacidad[i]
       incap.innerHTML += `
       <div class="form-check top-space">
-      <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="" value="${Info_i.Stuf}">
+      <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="incapacidad" value="LEY${Info_i.Stuf}">
       <label class="form-check-label" for="">
       ${Info_i.Stuf}</label>
     </div><br>`
