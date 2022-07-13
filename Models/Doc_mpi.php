@@ -1,6 +1,24 @@
 <?php
 include_once('db.php');
 include_once('adminPlantillas.php');
+
+session_start();
+$EmpleadoUser = $_SESSION['usuario'];
+
+//Query para autollenado
+$UserQuery = "SELECT * FROM `Alfabetico` WHERE USUARIO = '$EmpleadoUser'";
+$UserInfo = mysqli_query($conexion, $UserQuery);
+/*
+"DROP TABLE `ManyIssues`.`data`"
+
+$IncidenciaInfoForPDF= "SELECT * FROM $Dependencia WHERE RFC='$RFC' AND CondicionesGrTrabajo = '$CondicionesGrTrabajo' OR LeyFederalTrabajadores = '$LeyFederalTrabajadores' AND FechaInit = '$FechaInit'";
+                
+                $PDFinfo= mysqli_query($conexion, $IncidenciaInfoForPDF);
+                while ($info = mysqli_fetch_array($PDFinfo)){
+                    echo '<form action="" method="post" id="UserForm" autocomplete="off">';
+                    infoDependencia($info);
+                    echo '</form>';
+                }*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +49,10 @@ include_once('adminPlantillas.php');
     
     <form class="contenedor row g-3" action="Doc_mpi.php" method="post" style="margin-top:1rem;" autocomplete="off">
         
+<?php
+while($UInfo = mysqli_fetch_array($UserInfo)){
+?>
+
     <div class="row">
         <div class="col-md-4">
             <h6 id="folio_Genereted"></h6>
@@ -119,7 +141,6 @@ include_once('adminPlantillas.php');
     
         <h6 class="top-space center">DOCUMENTO MÚLTIPLE DE INCIDENCIAS</h6>
         <section class="row g-3 top-space">
-            
             <p class="col-md-6">
             SOLICITO SE TRAMITE LO SEÑALADO A CONTINUACIÓN, CORRESPONDIENTE AL: 
             </p>
@@ -132,23 +153,23 @@ include_once('adminPlantillas.php');
             <p class="col-md-6"></p>
             <div class="col-md-6 top-space form-inline">
                 <label class="form-label" for="start">RESPECTO DEL (A)C.</label>
-                <input class="form-control" type="text" id="" name="NombreE" require>
+                <input class="form-control" type="text" id="" name="NombreE" value="<?php echo "{$UInfo['NOM']} {$UInfo['PATERNO']} {$UInfo['MATERNO']}";?>" require>
             </div>
             <div class="col-md-4 top-space form-inline">
                 <label class="form-label" for="start">R.F.C</label>
-                <input class="form-control" type="text" id="" name="RFC" require>
+                <input class="form-control" type="text" id="" name="RFC" value="<?php echo $UInfo["RFC"];?>" require>
             </div>
             <div class="col-md-5 top-space form-inline">
                 <label class="form-label" for="start">TIPO DE CONTRATO- No. DE EMPLEADO(A)</label>
-                <input class="form-control" type="text" id="" name="TipoContrato">
+                <input class="form-control" type="text" id="" name="TipoContrato" value="<?php echo $UInfo["EMP"];?>">
             </div>
             <div class="col-md-3 top-space form-inline">
                 <label class="form-label" for="start">SEC. SIN.</label>
-                <input class="form-control" type="text" id="" name="SS">
+                <input class="form-control" type="text" id="" name="SS" value="<?php echo $UInfo["SS"];?>">
             </div>
             <div class="col-md-12 top-space form-inline" style="justify-content: space-around;">
                 <label class="form-label" for="start">ADSCRITO(A) A:</label>
-                <input class="form-control" type="text" id="" name="Adscrito" >
+                <input class="form-control" type="text" id="" name="Adscrito" value="<?php echo $UInfo["ADSCRITO"];?>">
             </div>
         </section>
 
@@ -209,7 +230,7 @@ include_once('adminPlantillas.php');
             <br>
             <div class="col-md-3 form-inline">
                 <label class="form-label" for="start">FECHA DE INGRESO</label>
-                <input class="form-control" type="date" id="date" name="FechaIngreso" min="2000-01-01" max="2035-12-31" style="width: 59%;"> 
+                <input class="form-control" type="date" id="date" name="FechaIngreso" min="1960-01-01" max="2035-12-31" style="width: 59%;" value="<?php echo $UInfo["FecIng"];?>"> 
             </div>
             <div class="col-md-5 form-inline" style="justify-content: space-around;">
                 <label style="margin:0;" for="validationDefault04" class="form-label">DÍAS QUE LABORA</label>
@@ -221,8 +242,8 @@ include_once('adminPlantillas.php');
             </div>
             <div class="col-md-4 form-inline">
               <label for="validationDefault03" class="form-label">HORARIO</label>
-              <input class="form-control" type="time" name="HorarioStart" style="width: 35%;"><p>A</p>
-              <input class="form-control" type="time" name="HorarioEnd" style="width: 35%;">
+              <input class="form-control" type="time" name="HorarioStart" style="width: 35%;" value="<?php echo $UInfo["HoraBegin"];?>"><p>A</p>
+              <input class="form-control" type="time" name="HorarioEnd" style="width: 35%;" value="<?php echo $UInfo["HoraEnd"];?>" >
             </div>
             <div class="col-md-9 form-inline top-space">
                 <label class="form-label" for="start">LUGAR Y FORMA Y NÚMERO DE REGISTRO: </label>
@@ -230,14 +251,12 @@ include_once('adminPlantillas.php');
             </div>
             <div class="col-md-3 form-inline top-space" style="justify-content: space-around;">
                 <label class="form-label" for="start">N.S.</label>
-                <input class="form-control" type="text" id="" name="NS" style="width: 50%;">
+                <input class="form-control" type="text" id="" name="NS" style="width: 50%;" value="<?php echo $UInfo["NS"];?>">
             </div>
         </section>
 
+        <?php }?>
         <div class="col-12" style="margin:2.5rem 0; display: flex;justify-content: center;">
-         <!--
-            <input class="btn btn-primary" style="width:10rem;" id="send" name="send" type="submit" value="Enviar"><br>
-        -->
          <button id="submit" class="btn btn-primary" style="width:10rem;" name="send" type="submit" value="Enviar">Enviar</button>
         </div>
     </form>
@@ -245,7 +264,7 @@ include_once('adminPlantillas.php');
     <script>
         if (window.history.replaceState) { 
             window.history.replaceState(null, null, window.location.href); }
-            // verificamos disponibilidad 
+            // evitamos refrescar con f5
     </script>
 
 <!-- 
@@ -293,6 +312,8 @@ if($_POST['send']){
 
 
     if($dataInsert){
+
+        //Si se agregaron correctamente los datos en la DB se muestra una ventana modal con los datos y opción de guardar en PDF
         echo '<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">';
         echo '<div class="modal-dialog modal-lg">';
         echo '    <div class="modal-content">';
@@ -305,16 +326,19 @@ if($_POST['send']){
         $folioNumber = "SELECT CONCAT( Folio, ID_Folio ) AS Result FROM $Dependencia WHERE RFC='$RFC' AND CondicionesGrTrabajo = '$CondicionesGrTrabajo' OR LeyFederalTrabajadores = '$LeyFederalTrabajadores' AND FechaInit = '$FechaInit'";
             $infoQuery= mysqli_query($conexion, $folioNumber);
                 while ($show_info = mysqli_fetch_array($infoQuery)){
-                    echo '<input id="idFolio" style="display: none" value="'.$show_info['Result'].'"'.$show_info['Result'].'">'.$show_info['Result'].'</input>';
+                    /*Hacemos una primer consulta para obtener el FOLIO.
+                    Guardamos el FOLIO en la variable IDFOLIO para hacer la siguiente consulta 
+                    donde traemos todos los datos de dicho folio*/
+                    $IDFOLIO = $show_info['Result'];
+                    $IncidenciaInfoForPDF= "SELECT * FROM $Dependencia WHERE CONCAT( Folio, ID_Folio )='$IDFOLIO'";
+
+                    $PDFinfo= mysqli_query($conexion, $IncidenciaInfoForPDF);
+                        while ($info = mysqli_fetch_array($PDFinfo)){
+                           echo '<form action="" method="post" id="UserForm" autocomplete="off">';
+                           infoDependencia($info);
+                           echo '</form>';
+                        }
                     
-                }
-                $IncidenciaInfoForPDF= "SELECT * FROM $Dependencia WHERE RFC='$RFC' AND CondicionesGrTrabajo = '$CondicionesGrTrabajo' OR LeyFederalTrabajadores = '$LeyFederalTrabajadores' AND FechaInit = '$FechaInit'";
-                
-                $PDFinfo= mysqli_query($conexion, $IncidenciaInfoForPDF);
-                while ($info = mysqli_fetch_array($PDFinfo)){
-                    echo '<form action="" method="post" id="UserForm" autocomplete="off">';
-                    infoDependencia($info);
-                    echo '</form>';
                 }
         echo '      </div>';
         echo '      <div class="modal-footer">';

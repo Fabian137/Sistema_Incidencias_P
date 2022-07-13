@@ -121,7 +121,7 @@ async function generatePDF(folio, nombre, rfc, fecha, tipoContrato, CondicionesT
     pdf.text(nombre, 340, 147);
     pdf.text(adscrito, 137, 178);
 
-    pdf.text(dependencia, 430, 50);
+    pdf.text(dependencia, 495, 50);
 
     switch(CondicionesTrabajo){
         //LEY FEDERAL
@@ -264,24 +264,20 @@ async function generatePDF(folio, nombre, rfc, fecha, tipoContrato, CondicionesT
         break;
         case LeyFederal = LeyFedTrasSerEs[8]:
             pdf.setFillColor(120,18,56);
-            pdf.circle(330.5, 420, 4, 'F');
+            pdf.circle(330.5, 430, 4, 'F');
         break;
         case LeyFederal = LeyFedTrasSerEs[9]:
             pdf.setFillColor(120,18,56);
-            pdf.circle(330.5, 410, 4, 'F');
+            pdf.circle(330.5, 444, 4, 'F');
         break;
         case LeyFederal = LeyFedTrasSerEs[10]:
             pdf.setFillColor(120,18,56);
-            pdf.circle(330.5, 420, 4, 'F');
+            pdf.circle(330.5, 454, 4, 'F');
         break;
 
         case LeyFederal = LeyFedTrasSerEs[11]:
             pdf.setFillColor(120,18,56);
-            pdf.circle(330.5, 444, 4, 'F');
-        break;
-        case LeyFederal = LeyFedTrasSerEs[12]:
-            pdf.setFillColor(120,18,56);
-            pdf.circle(330.5, 454, 4, 'F');
+            pdf.circle(330.5, 464, 4, 'F');
         break;
 
     }

@@ -19,11 +19,11 @@
     align-items: center;">
     <a href="../../login.php" style="text-decoration: none;" class="logo"></a>
     <a href="../../login.php" style="text-decoration: none;" class="tituloH">Levantamiento de Reportes</a>
-     <a href="../../login.php" style="text-decoration: none;" class="logo2"></a>
-     <div class="nav-wrapper cont">
-       <div class="naveg"></div>
-       </div> 
- </nav>
+    <a href="../../login.php" style="text-decoration: none;" class="logo2"></a>
+    <div class="nav-wrapper cont">
+    <div class="naveg"></div>
+    </div>   
+    </nav>
     
     <form action="validate.php" method="post" style="margin: 0 35%;" autocomplete="off">
     <div style="height: 60vh; flex-direction: column;" class="center">
@@ -40,5 +40,12 @@
   </div>
    
    </form> 
+<?php
+
+    if($_POST['send']){
+        $Empleado = $_POST['usuario'];
+    }
+
+?>
 </body>
 </html>

@@ -16,27 +16,36 @@ include_once('adminPlantillas.php');
 </head>
 <body>
 
-    <header style="height: 15vh; background-color: rgb(232, 230, 224);">
 
-        <div class="center contenedor" style="justify-content: space-between; align-items: center;">
-            <!--<div class="musirech"><a href="index.html"><h1>MUSIRECH</h1></a></div>-->
-            <a href="../login.php" class="logo"></a>
-        </div>
+
+    <header style="background-color: #dfdfdf;">
+
+    <nav style="margin-left:6%; display: flex; justify-content: space-around;
+    align-items: center;">
+    <a href="../login.php" style="text-decoration: none;" class="logo"></a>
+    <a href="../login.php" style="text-decoration: none;" class="tituloH">Consulta de Incidencias</a>
+    <a href="../login.php" style="text-decoration: none;" class="logo2"></a>
+    <div class="nav-wrapper cont">
+    <div class="naveg"></div>
+    </div>   
+    </nav>
 
     </header>
 
-        
+    <section class="contenedor" style="margin-top: 2.5rem">
+    <button type="button" class="btn btn-outline-primary">
+    <a href="nameSearch.php" class="btnexit" style="text-decoration: none;">Nombre</a>
+    </button>
+    </section>
 
-        <form class="contenedor row g-4 center" action="adminConsultas.php" method="post" autocomplete="off">
-
-        <div class="col-md-3 contenedor" style="margin-top:1rem; text-align: center;">
+    <form class="contenedor row g-4 center" action="adminConsultas.php" method="post" autocomplete="off">
+        <div class="col-md-3 contenedor" style="margin-top:3rem; text-align: center;">
             <h6 for="validationDefault04" class="form-label">FOLIO</h6>
             <div class="contenedor">
             <input class="form-control" type="text" id="" name="ID_folio"style="width:100%;">
-          </div>
-          </div>
-          <div class="col-12" style="display: flex;justify-content: center;">
-          
+        </div>
+        </div>
+        <div class="col-12" style="display: flex;justify-content: center;">
             <input class="btn btn-primary" style="width:10rem;" name="consult" type="submit" value="Consultar"><br>
           </div>
         </form>
@@ -101,45 +110,10 @@ include_once('adminPlantillas.php');
             
          }
          ?>
-         <script>
-/*
-var LeyFedTrasSerEs =[
-            "OMISIÓN DE ENTRADA",
-            "OMISIÓN DE SALIDA",
-            "OMISIÓN TOTAL",
-            "ARTÍCULO 43 FRACC. VIII",
-
-            "B",
-            "E",
-
-            "1er. PERIODO 2022",
-            "2do. PERIODO 2022",
-            "2er. PERIODO 2022",
-            "ESTIMULOS Y RECOMPENSAS",
-
-            "PROGRAMA PERMISO RETRIBUIDO MATERNIDAD",
-            "PATERNIDAD RESPONSABLE"
-        ];
-            var IncidenciaShow = document.getElementById('LeyFederal')
-            var IncidenciaDelete = document.querySelector('.CondicionesTrabajo');
-            var Incidencia = document.getElementById('CondicionesTrabajo').textContent;
-            const ValueIncidencia = Incidencia;
-
-
-            for(i=0; i<LeyFedTrasSerEs.length; i++){
-                if(Incidencia = LeyFedTrasSerEs[i]){
-                    console.log(ValueIncidencia);
-                    IncidenciaShow.innerHTML += `${ValueIncidencia}`
-                    IncidenciaDelete.style.display='none';
-                }
-            }
-            */
-            
-         </script>
 </form>
 
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
