@@ -101,6 +101,11 @@ async function generatePDF(folio, nombre, rfc, fecha, tipoContrato, CondicionesT
     pdf.addImage(plantillaIMG, 'PNG', 25, 0, 565, 792);
     
     pdf.setFontSize(8);
+    let date = new Date();
+    let day = String(date.getDate()).padStart(2, '0');
+    let month = String(date.getMonth() + 1).padStart(2, '0');
+    pdf.text(day, 466, 115);
+    pdf.text(month, 497, 115);
 
     pdf.text(folio, 510, 50);
     pdf.text(rfc, 103, 163);
@@ -110,7 +115,7 @@ async function generatePDF(folio, nombre, rfc, fecha, tipoContrato, CondicionesT
     pdf.text(nombre, 340, 147);
     pdf.text(adscrito, 137, 178);
 
-    pdf.text(dependencia, 470, 50);
+    pdf.text(dependencia, 462, 50);
     
 
 
@@ -258,20 +263,16 @@ async function generatePDF(folio, nombre, rfc, fecha, tipoContrato, CondicionesT
         break;
         case LeyFederal = LeyFedTrasSerEs[9]:
             pdf.setFillColor(120,18,56);
-            pdf.circle(330.5, 410, 4, 'F');
+            pdf.circle(330.5, 444, 4, 'F');
         break;
         case LeyFederal = LeyFedTrasSerEs[10]:
             pdf.setFillColor(120,18,56);
-            pdf.circle(330.5, 420, 4, 'F');
+            pdf.circle(330.5, 454, 4, 'F');
         break;
 
         case LeyFederal = LeyFedTrasSerEs[11]:
             pdf.setFillColor(120,18,56);
-            pdf.circle(330.5, 444, 4, 'F');
-        break;
-        case LeyFederal = LeyFedTrasSerEs[12]:
-            pdf.setFillColor(120,18,56);
-            pdf.circle(330.5, 454, 4, 'F');
+            pdf.circle(330.5, 464, 4, 'F');
         break;
 
     }

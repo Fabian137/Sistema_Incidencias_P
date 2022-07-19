@@ -66,53 +66,25 @@ include_once('adminPlantillas.php');
             $QueryByName = "SELECT * FROM $Dependencia WHERE NombreE = '$Name'";
             $infoQueryName= mysqli_query($conexion, $QueryByName);
             while ($show_info = mysqli_fetch_array($infoQueryName)){
-                echo $show_info['NombreE'];
-                echo $show_info['TipoContrato'];
+              echo '  <div class="accordion" id="accordionExample">';
+              echo '  <div class="accordion-item">';
+              echo '    <h2 class="accordion-header" id="heading'.$show_info['Folio'].''.$show_info['ID_folio'].'">';
+              echo '      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse'.$show_info['Folio'].''.$show_info['ID_folio'].'" aria-expanded="false" aria-controls="collapse'.$show_info['Folio'].''.$show_info['ID_folio'].'">';
+              echo  '       '.$show_info['NombreE'].'   FOLIO: '.$show_info['Folio'].''.$show_info['ID_folio'].'';
+              echo '      </button>';
+              echo '    </h2>';
+              echo '    <div id="collapse'.$show_info['Folio'].''.$show_info['ID_folio'].'" class="accordion-collapse collapse" aria-labelledby="heading'.$show_info['Folio'].''.$show_info['ID_folio'].'" data-bs-parent="#accordionExample">';
+              echo '      <div class="accordion-body">';
+              searchNameInfo($show_info);
+              echo '      </div>';
+              echo '    </div>';
+              echo '    </div>';
+              echo '  </div>';
             }
 
             
          }
          ?>
-         <div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        Accordion Item #1
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        
-      
-      <section class="row" style="margin: 1.5rem 9%;"><h6>NOMBRE:<samp style="font-weight: bolder;" id="nombre"> FABIÁN BELTRÁN ISIDRO </samp></h6><h6>FOLIO:<span id="folio"> 1196</span></h6><h6 id="dependencia"> DGRC</h6><h6 class="top-space center">DOCUMENTO MÚLTIPLE DE INCIDENCIAS</h6><p>SOLICITO SE TRAMITE LO SEÑALADO A CONTINUACIÓN, CORRESPONDIENTE AL:  DEL <samp style="font-weight: bolder;" id="fecha"> 2022-07-10 AL 2022-07-13</samp></p><br><p>RESPECTO DEL (A)C.<samp style="font-weight: bolder;"> <samp style="font-weight: bolder;">FABIÁN BELTRÁN ISIDRO </samp></samp></p><p class="col-md-4">RFC:<samp style="font-weight: bolder;" id="rfc"> BEIC040116HDFLSRA7 </samp></p><p class="col-md-6">TIPO DE CONTRATO-No. DE EMPLEADO(A):<samp style="font-weight: bolder;" id="tipoContrato"> Base</samp></p><p class="col-md-3">SEC. SIN.<samp style="font-weight: bolder;" id="ss">8</samp></p><p class="col-md-4">ADSCRITO(A) A: <samp style="font-weight: bolder;" id="adscrito">DGAF</samp></p><hr><h6 class="center">CONDICIONES GENERALES DEL TRABAJO DEL G.D.F.</h6><p class="col-md-12 "> <samp style="font-weight: bolder;" id="CondicionesTrabajo"></samp></p><hr><h6 class="center">LEY FEDERAL DE LOS TRABAJADORES AL SERVICIO DEL ESTADO</h6><p class="col-md-12"><samp style="font-weight: bolder;" id="LeyFederal">ESTIMULOS Y RECOMPENSAS</samp></p><hr><p class="col-md-12">OBSERVACIONES: <samp style="font-weight: bolder;" id="Observaciones">Mamadas plox</samp></p><p class="col-md-4">FECHA DE INGRESO: <samp style="font-weight: bolder;" id="FechaIngreso">2021-07-31</samp></p><p class="col-md-4">DÍAS QUE LABORA: <samp style="font-weight: bolder;" id="DiasLabora">LUNES A VIERNES</samp></p><p class="col-md-4">HORARIO: <samp style="font-weight: bolder;" id="Horarios">21:45:00 A 15:13:00</samp></p><p class="col-md-12">LUGAR FORMA Y NÚMERO DE REGISTRO:  <samp style="font-weight: bolder;" id="Place"> MI LUGAR</samp></p><p class="col-md-12">N.S.  <samp style="font-weight: bolder;" id="NS"> 8</samp></p></section>
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        Accordion Item #2
-      </button>
-    </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingThree">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        Accordion Item #3
-      </button>
-    </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-      </div>
-    </div>
-  </div>
-</div>
 </form>
 
     

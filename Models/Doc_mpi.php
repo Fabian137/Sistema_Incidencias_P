@@ -47,6 +47,12 @@ $IncidenciaInfoForPDF= "SELECT * FROM $Dependencia WHERE RFC='$RFC' AND Condicio
 
     </header>
     
+    <section class="contenedor" style="margin-top: 2.5rem">
+    <button type="button" class="btn btn-outline-primary">
+        <a href="exit.php" class="btnexit" style="text-decoration: none;">Cerrar sesión</a>
+    </button>
+    </section>
+
     <form class="contenedor row g-3" action="Doc_mpi.php" method="post" style="margin-top:1rem;" autocomplete="off">
         
 <?php

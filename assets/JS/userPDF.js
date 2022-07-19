@@ -113,6 +113,13 @@ async function generatePDF(folio, nombre, rfc, fecha, tipoContrato, CondicionesT
     
     pdf.setFontSize(8);
 
+    let date = new Date();
+    let day = String(date.getDate()).padStart(2, '0');
+    let month = String(date.getMonth() + 1).padStart(2, '0');
+    pdf.text(day, 470, 130);
+    pdf.text(month, 505, 130);
+
+
     pdf.text(folio, 510, 50);
     pdf.text(rfc, 103, 163);
     pdf.text(fecha, 340, 134);
