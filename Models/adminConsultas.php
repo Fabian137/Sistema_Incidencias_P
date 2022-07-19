@@ -73,17 +73,6 @@ include_once('adminPlantillas.php');
 
 <!-- VALIDACION DE INCIDENCIA QUERY-->
 <?php
-if($_POST['validar']){
-  $validacion = $_POST["Validation"];
-  $folio = $_POST["NumeroFolio"];
-  $Dependencia = $_POST["Dependency"];
-  
-  $validationQuery = "UPDATE $Dependencia SET `Validation` = '$validacion' WHERE CONCAT(Folio, ID_folio)=$folio";
-  var_dump($validationQuery);
-  $validacionIncidencia = mysqli_query($conexion, $validationQuery);
-  //header("Refresh:1");
-
-}
 
 ?>
     <form class="contenedor row g-4 center" action="adminConsultas.php" method="post" autocomplete="off">
@@ -99,6 +88,30 @@ if($_POST['validar']){
         </form>
         <form class="contenedor row g-4 center" action="" method="post" id="formPend" autocomplete="off">
         <?php
+        if($_POST['validar']){
+          $validacion = $_POST["Validation"];
+          $folio = $_POST["NumeroFolio"];
+          $Dependencia = $_POST["Dependency"];
+
+          /* QUERY PARA VALIDAR LA INCIDENCIA/FOLIO*/
+          $validationQuery = "UPDATE $Dependencia SET `Validation` = '$validacion' WHERE CONCAT(Folio, ID_folio)=$folio";
+          /* QUERY PARA VOLVER A MOSTRAR EL FOLIO YA VALIDADO*/
+          $Refresh_info= "SELECT * FROM $Dependencia WHERE CONCAT(Folio, ID_folio)=$folio";
+          
+          $validacionIncidencia = mysqli_query($conexion, $validationQuery);
+        
+          if($validacionIncidencia){
+            $infoQuery= mysqli_query($conexion, $Refresh_info);
+            while ($show_info = mysqli_fetch_array($infoQuery)){
+              validationDone($show_info);
+            }
+          }
+                          
+          //header("Refresh:1");
+        
+        }
+
+
         if($_POST['consult']){
             $folNum = $_POST["ID_folio"];
 

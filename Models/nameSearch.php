@@ -75,7 +75,12 @@ include_once('adminPlantillas.php');
               echo '    </h2>';
               echo '    <div id="collapse'.$show_info['Folio'].''.$show_info['ID_folio'].'" class="accordion-collapse collapse" aria-labelledby="heading'.$show_info['Folio'].''.$show_info['ID_folio'].'" data-bs-parent="#accordionExample">';
               echo '      <div class="accordion-body">';
-              searchNameInfo($show_info);
+              if($show_info['Validation']){
+                validationDone($show_info);
+              }
+              elseif (!$show_info['Validation']) {
+                validation($show_info);
+              }
               echo '      </div>';
               echo '    </div>';
               echo '    </div>';
