@@ -108,7 +108,7 @@ include_once('adminPlantillas.php');
           }
                           
           //header("Refresh:1");
-        
+        //PARA PROBAR MI RAMA TESTS Y TRABAJAR SOBRE ELLA 
         }
 
 
@@ -178,6 +178,8 @@ include_once('adminPlantillas.php');
 </form>
 
       <script>
+const
+
         const folionumber = document.getElementById('folio').textContent;
         const Dependencia = document.getElementById('dependencia').textContent;
         const Titulo = document.getElementById('staticBackdropLabel')
