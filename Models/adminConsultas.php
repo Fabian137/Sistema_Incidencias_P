@@ -40,41 +40,14 @@ include_once('adminPlantillas.php');
 
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form action="adminConsultas.php" method="post" autocomplete="off" id="validationForm" name="validationForm">
-        
-          <input style="display:none;" type="text" name="NumeroFolio" id="NumeroFolio" value="">
-          <input style="display:none;" type="text" name="Dependency" id="Dependency" value="">
-            <div class="center">
-                <div class="col-10" style="margin: 5% 0;">
-                    <label class="form-label">Nombre de quien valida la incidencia</label>
-            <div class="input-group">
-            <div class="input-group-text"><img class="login-img" src="../assets/img/user.svg" alt="user icon"></div>
-            <input type="text" class="form-control" placeholder="Ingrese el nombre" name="Validation">
-            </div>
-            </div>
-            </div>
-            <input class="btn btn-primary" style="width:10rem;" name="validar" type="submit" value="Validar"><br>
-        </form>
-      </div>
-      <div class="modal-footer">
-      <!---  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- VALIDACION DE INCIDENCIA QUERY-->
 <?php
-
+modalValidation();
 ?>
+
+<!-- VALIDACION DE INCIDENCIA QUERY
+
+
+-->
     <form class="contenedor row g-4 center" action="adminConsultas.php" method="post" autocomplete="off">
         <div class="col-md-3 contenedor" style="margin-top:3rem; text-align: center;">
             <h6 for="validationDefault04" class="form-label">FOLIO</h6>
@@ -83,7 +56,7 @@ include_once('adminPlantillas.php');
         </div>
         </div>
         <div class="col-12" style="display: flex;justify-content: center;">
-            <input class="btn btn-primary" style="width:10rem;" name="consult" type="submit" value="Consultar"><br>
+            <input class="btnN " style="width:10rem;" name="consult" type="submit" value="Consultar"><br>
           </div>
         </form>
         <form class="contenedor row g-4 center" action="" method="post" id="formPend" autocomplete="off">
@@ -121,7 +94,12 @@ include_once('adminPlantillas.php');
                 $DEJC_info= "SELECT * FROM DEJC WHERE CONCAT(Folio, ID_folio)=$folNum";
                 $infoQuery= mysqli_query($conexion, $DEJC_info);
                 while ($show_info = mysqli_fetch_array($infoQuery)){
+                  if($show_info['Validation']){
+                    validationDone($show_info);
+                  }
+                  elseif (!$show_info['Validation']) {
                     validation($show_info);
+                  }
                 }
                 break;
 
@@ -129,7 +107,12 @@ include_once('adminPlantillas.php');
                 $DGRPPC_info= "SELECT * FROM DGRPPC WHERE CONCAT(Folio, ID_folio)=$folNum";
                 $infoQuery= mysqli_query($conexion, $DGRPPC_info);
                 while ($show_info = mysqli_fetch_array($infoQuery)){
+                  if($show_info['Validation']){
+                    validationDone($show_info);
+                  }
+                  elseif (!$show_info['Validation']) {
                     validation($show_info);
+                  }
                 }
                 
                 break;
@@ -151,7 +134,12 @@ include_once('adminPlantillas.php');
                 $DGJEL_info= "SELECT * FROM DGJEL WHERE CONCAT(Folio, ID_folio)=$folNum";
                 $infoQuery= mysqli_query($conexion, $DGJEL_info);
                 while ($show_info = mysqli_fetch_array($infoQuery)){
+                  if($show_info['Validation']){
+                    validationDone($show_info);
+                  }
+                  elseif (!$show_info['Validation']) {
                     validation($show_info);
+                  }
                 }
                 break;
 
@@ -159,7 +147,12 @@ include_once('adminPlantillas.php');
                 $DGSL_info= "SELECT * FROM DGSL WHERE CONCAT(Folio, ID_folio)=$folNum";
                 $infoQuery= mysqli_query($conexion, $DGSL_info);
                 while ($show_info = mysqli_fetch_array($infoQuery)){
+                  if($show_info['Validation']){
+                    validationDone($show_info);
+                  }
+                  elseif (!$show_info['Validation']) {
                     validation($show_info);
+                  }
                 }
                 break;
 
@@ -167,7 +160,12 @@ include_once('adminPlantillas.php');
                 $DGRC_info= "SELECT * FROM DGRC WHERE CONCAT(Folio, ID_folio)=$folNum";
                 $infoQuery= mysqli_query($conexion, $DGRC_info);
                 while ($show_info = mysqli_fetch_array($infoQuery)){
+                  if($show_info['Validation']){
+                    validationDone($show_info);
+                  }
+                  elseif (!$show_info['Validation']) {
                     validation($show_info);
+                  }
                 }
                 break;
 
@@ -177,16 +175,6 @@ include_once('adminPlantillas.php');
          ?>
 </form>
 
-      <script>
-const
-
-        const folionumber = document.getElementById('folio').textContent;
-        const Dependencia = document.getElementById('dependencia').textContent;
-        const Titulo = document.getElementById('staticBackdropLabel')
-        Titulo.innerHTML += `VALIDACIÓN DE INCIDENCIA: ${folionumber}`;
-        document.validationForm.NumeroFolio.value = folionumber;
-        document.validationForm.Dependency.value = Dependencia;
-      </script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -194,9 +182,9 @@ const
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="../../jspdf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
-    <!--<script src="/assets/JS/directorio.js"></script>-->  
-   <script src="../assets/JS/inf.js"></script>
+    <!--<script src="/assets/JS/directorio.js"></script>-->
    <script src="../assets/JS/pdf.js"></script>
+   <script src="../assets/JS/functionsG.js"></script>
    
 </body>
 </html>

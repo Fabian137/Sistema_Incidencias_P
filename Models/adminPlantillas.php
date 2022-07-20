@@ -105,16 +105,16 @@ function validation($info){
     echo '<h6>NOMBRE:<samp style="font-weight: bolder;" id="nombre"> '. $info['NombreE'] .'</samp></h6>';
     echo '<div class="row justify-content-between">';
     echo '  <div class="col-4">';
-    echo        '<h6>FOLIO:<span id="folio"> '. $info['Folio'].''. $info['ID_folio'].'</span></h6>';   
+    echo        '<h6>FOLIO:<span id="F'. $info['Folio'].''. $info['ID_folio'].'"> '. $info['Folio'].''. $info['ID_folio'].'</span></h6>';   
     echo '    </div>';
     echo '    <div class="col-3">';
     /*-- Button trigger modal --*/
-    echo '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    echo '<button onclick="infoValidation('. $info['Folio'].''. $info['ID_folio'].')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
     VALIDAR
   </button>';
     echo '    </div>';
     echo '</div>';
-    echo        '<h6 id="dependencia"> '. $info['Dependencia'].'</h6>';
+    echo        '<h6 id="D'. $info['Folio'].''. $info['ID_folio'].'"> '. $info['Dependencia'].'</h6>';
     echo        '<h6 class="top-space center">DOCUMENTO MÚLTIPLE DE INCIDENCIAS</h6>';
     echo        '<p>SOLICITO SE TRAMITE LO SEÑALADO A CONTINUACIÓN, CORRESPONDIENTE AL:  DEL <samp style="font-weight: bolder;" id="fecha"> '. $info['FechaInit'].' AL '. $info['FechaFin'].'</samp></p>';
     echo        '<br>';
@@ -156,21 +156,18 @@ function validation($info){
 }
 
 function validationDone($info){
-
-    
-
     echo    '<section class="row" style="margin: 1.5rem 9%;">';
-    echo '<h6>NOMBRE:<samp style="font-weight: bolder;" id="nombre"> '. $info['NombreE'] .'</samp></h6>';
+    echo '<h6>NOMBRE:<samp style="font-weight: bolder;" id="nombre'. $info['Folio'].''. $info['ID_folio'].'"> '. $info['NombreE'] .'</samp></h6>';
     echo '<div class="row justify-content-between">';
     echo '  <div class="col-4">';
-    echo        '<h6>FOLIO:<span id="folio"> '. $info['Folio'].''. $info['ID_folio'].'</span></h6>';   
+    echo        '<h6>FOLIO:<span id="F'. $info['Folio'].''. $info['ID_folio'].'"> '. $info['Folio'].''. $info['ID_folio'].'</span></h6>';   
     echo '    </div>';
     echo '    <div class="col-3">';
     /*-- Button trigger modal --*/
     echo '<h6>Validado por: '.$info['Validation'].'</h6>';
     echo '    </div>';
     echo '</div>';
-    echo        '<h6 id="dependencia"> '. $info['Dependencia'].'</h6>';
+    echo        '<h6 id="D'. $info['Folio'].''. $info['ID_folio'].'"> '. $info['Dependencia'].'</h6>';
     echo        '<h6 class="top-space center">DOCUMENTO MÚLTIPLE DE INCIDENCIAS</h6>';
     echo        '<p>SOLICITO SE TRAMITE LO SEÑALADO A CONTINUACIÓN, CORRESPONDIENTE AL:  DEL <samp style="font-weight: bolder;" id="fecha"> '. $info['FechaInit'].' AL '. $info['FechaFin'].'</samp></p>';
     echo        '<br>';
@@ -209,4 +206,39 @@ function validationDone($info){
     echo        '<p class="col-md-12">LUGAR FORMA Y NÚMERO DE REGISTRO:  <samp style="font-weight: bolder;" id="Place"> '. $info['LugarFormNoRg'] .'</samp></p>';
     echo        '<p class="col-md-12">N.S.  <samp style="font-weight: bolder;" id="NS"> '. $info['NS'] .'</samp></p>';
     echo    '</section>';
+    
+    echo    '<div class="center"><button type="submit" class="btn btn-primary mb-4">Generar PDF</button></div>';
+
+}
+
+function modalValidation(){
+    echo '<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">';
+    echo '<div class="modal-dialog">';
+    echo '<div class="modal-content">';
+    echo '  <div class="modal-header">';
+    echo '    <h5 class="modal-title" id="staticBackdropLabel"></h5>';
+    echo '    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+    echo '  </div>';
+    echo '  <div class="modal-body">';
+    echo '    <form action="adminConsultas.php" method="post" autocomplete="off" id="validationForm" name="validationForm">';
+    echo '      <input style="display:none;" type="text" name="NumeroFolio" id="NumeroFolio" value="">';
+    echo '      <input style="display:none;" type="text" name="Dependency" id="Dependency" value="">';
+    echo '        <div class="center">';
+    echo '            <div class="col-10" style="margin: 5% 0;">';
+    echo '                <label class="form-label">Nombre de quien valida la incidencia</label>';
+    echo '        <div class="input-group">';
+    echo '        <div class="input-group-text"><img class="login-img" src="../assets/img/user.svg" alt="user icon"></div>';
+    echo '        <input type="text" class="form-control" placeholder="Ingrese el nombre" name="Validation" required>';
+    echo '        </div>';
+    echo '        </div>';
+    echo '        </div>';
+    echo    '<div class="center"><input class="btn btn-primary" style="width:10rem;" name="validar" type="submit" value="Validar"></div>';
+
+    echo '    </form>';
+    echo '  </div>';
+    echo '  <div class="modal-footer">';
+    echo '  </div>';
+    echo '</div>';
+    echo '  </div>';
+    echo '</div>';
 }

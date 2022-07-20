@@ -30,6 +30,10 @@ include_once('adminPlantillas.php');
 
     </header>
 
+    <?php
+    modalValidation();
+    ?>
+
     <section class="contenedor" style="margin-top: 2.5rem">
     <button type="button" class="btn btn-outline-primary">
     <a href="adminConsultas.php" class="btnexit" style="text-decoration: none;">Folio</a>
@@ -65,8 +69,9 @@ include_once('adminPlantillas.php');
 
             $QueryByName = "SELECT * FROM $Dependencia WHERE NombreE = '$Name'";
             $infoQueryName= mysqli_query($conexion, $QueryByName);
+            echo '  <div class="accordion" id="accordionExample">';
+            
             while ($show_info = mysqli_fetch_array($infoQueryName)){
-              echo '  <div class="accordion" id="accordionExample">';
               echo '  <div class="accordion-item">';
               echo '    <h2 class="accordion-header" id="heading'.$show_info['Folio'].''.$show_info['ID_folio'].'">';
               echo '      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse'.$show_info['Folio'].''.$show_info['ID_folio'].'" aria-expanded="false" aria-controls="collapse'.$show_info['Folio'].''.$show_info['ID_folio'].'">';
@@ -84,14 +89,15 @@ include_once('adminPlantillas.php');
               echo '      </div>';
               echo '    </div>';
               echo '    </div>';
-              echo '  </div>';
             }
+
+            echo '  </div>';
 
             
          }
          ?>
 </form>
-
+<br>
     
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -101,8 +107,7 @@ include_once('adminPlantillas.php');
     <script src="../../jspdf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
     <!--<script src="/assets/JS/directorio.js"></script>-->  
-   <script src="../assets/JS/inf.js"></script>
    <script src="../assets/JS/pdf.js"></script>
-   
+   <script src="../assets/JS/functionsG.js"></script>
 </body>
 </html>

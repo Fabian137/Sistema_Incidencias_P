@@ -53,7 +53,26 @@ label{font-size: small;}
 ul:not(.browser-default)>li{
   list-style: disc;
 }
-
+.btnN{
+  color: #ececec;
+  padding: 0.7em 1.7em;
+  font-size: 18px;
+  border-radius: 0.5em;
+  border: 1px solid #75293d;
+  transition: all .3s;
+  box-shadow: 6px 6px 12px #c5c5c5,
+  -6px -6px 12px #ffffff;
+  background: #75293d;
+ }
+ 
+ .btnN:hover {
+  border: 1px solid #d60707;
+ }
+ 
+ .btnN:active {
+  box-shadow: 4px 4px 12px #c5c5c5,
+              -4px -4px 12px #ffffff;
+ }
 .row {--bs-gutter-x: 0;}
 .contenedor{margin:0 15%;}
 .btn{background-color: #75293d; border-color: #8b0505;}
