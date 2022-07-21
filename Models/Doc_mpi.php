@@ -54,7 +54,8 @@ $IncidenciaInfoForPDF= "SELECT * FROM $Dependencia WHERE RFC='$RFC' AND Condicio
     </section>
 
     <form class="contenedor row g-3" action="Doc_mpi.php" method="post" style="margin-top:1rem;" autocomplete="off">
-        
+      
+   
 <?php
 while($UInfo = mysqli_fetch_array($UserInfo)){
 ?>
@@ -70,14 +71,16 @@ while($UInfo = mysqli_fetch_array($UserInfo)){
 
                 <div class="form-inline">
                 <select class="form-select right-space" name="Dependencia" id="Folio" style="width: 100%;">
+                    <option value="<?php echo $UInfo["Adscrito"];?>"><?php echo $UInfo["Adscrito"];?></option>
+                    <!--
                     <option value="DEJC">DEJC</option>
                     <option value="DGRPPC">DGRPPC</option>
                     <option value="DGRT">DGRT</option>
                     <option value="DGJEL">DGJEL</option>
                     <option value="DGSL">DGSL</option>
                     <option value="DGRC">DGRC</option>
+                -->
                 </select>
-                <!--<h6 name="Folio" id="NumFolioDependencia"></h6>-->
 
                 <div class="col-md-6" id="NumFolioDependencia"></div>
                
@@ -90,18 +93,6 @@ while($UInfo = mysqli_fetch_array($UserInfo)){
                 var dependenciaFolio = document.getElementById('Folio')
                 var NumFolioDependencia = document.getElementById('NumFolioDependencia')
                 function FolioNumberFrtCharge() {
-                    switch (dependenciaFolio.value) {
-                        case "DEJC":
-                        NumFolioDependencia.innerHTML = `
-                         <select class="forId" name="folio" style="width: 100%;">
-                         <option value="21">21</option>
-                         </select>`;
-                        break;
-                    }
-                }
-                window.onload = FolioNumberFrtCharge;
-                dependenciaFolio.addEventListener("change", () => {
-                  // if value switched by client
                     switch (dependenciaFolio.value) {
                         case "DEJC":
                             NumFolioDependencia.innerHTML = `
@@ -140,7 +131,9 @@ while($UInfo = mysqli_fetch_array($UserInfo)){
                          </select>`;
                         break;
                     }
-                  });
+                }
+                window.onload = FolioNumberFrtCharge;
+                dependenciaFolio.addEventListener("change", FolioNumberFrtCharge);
             </script>
             </div>
     </div>
@@ -175,7 +168,7 @@ while($UInfo = mysqli_fetch_array($UserInfo)){
             </div>
             <div class="col-md-12 top-space form-inline" style="justify-content: space-around;">
                 <label class="form-label" for="start">ADSCRITO(A) A:</label>
-                <input class="form-control" type="text" id="" name="Adscrito" value="<?php echo $UInfo["ADSCRITO"];?>">
+                <input class="form-control" type="text" id="" name="Adscrito" value="<?php echo $UInfo["Adscrito"];?>">
             </div>
         </section>
 
@@ -265,16 +258,13 @@ while($UInfo = mysqli_fetch_array($UserInfo)){
         <div class="col-12" style="margin:2.5rem 0; display: flex;justify-content: center;">
          <button id="submit" class="btn btn-primary" style="width:10rem;" name="send" type="submit" value="Enviar">Enviar</button>
         </div>
+
     </form>
-    
     <script>
+        // evitamos refrescar con f5
         if (window.history.replaceState) { 
             window.history.replaceState(null, null, window.location.href); }
-            // evitamos refrescar con f5
     </script>
-
-<!-- 
--->
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -289,6 +279,7 @@ while($UInfo = mysqli_fetch_array($UserInfo)){
 </html>
 
 <?php
+
 if($_POST['send']){
 
     $Dependencia = $_POST["Dependencia"];
@@ -311,14 +302,25 @@ if($_POST['send']){
     $Observaciones = $_POST["Observaciones"];
     
     
-    $sendData = "INSERT INTO `$Dependencia` (`Folio`, `Dependencia`, `FechaInit`, `FechaFin`, `NombreE`, `RFC`, `TipoContrato`, `SS`, `Adscrito`, `CondicionesGrTrabajo`, `LeyFederalTrabajadores`, `FechaIngreso`, `DiasLabora`, `HorarioStart`, `HorarioEnd`, `LugarFormNoRg`, `NS`, `Observaciones`) VALUES
-            ('$Folio', '$Dependencia','$FechaInit', '$FechaFin','$NombreE', '$RFC', '$TipoContrato','$SS','$Adscrito', '$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso', '$DiasLabora', '$HorarioStart', '$HorarioEnd', '$LugarFormNoRg', '$NS', '$Observaciones')";
+    $firstDate  = new DateTime($FechaInit);
+    $secondDate = new DateTime($FechaFin);
+    $intvl = $firstDate->diff($secondDate);
+    //var_dump ($intvl->y . " year, " . $intvl->m." months and ".$intvl->d." day"); 
 
+    // Total amount of days
+    $days = $intvl->days;
+    echo $days;
+    //echo $intvl->days . " days ";
+    
+    $sendData = "INSERT INTO `$Dependencia` (`Folio`, `Dependencia`, `FechaInit`, `FechaFin`, `NombreE`, `RFC`, `TipoContrato`, `SS`, `Adscrito`, `CondicionesGrTrabajo`, `LeyFederalTrabajadores`, `FechaIngreso`, `DiasLabora`, `HorarioStart`, `HorarioEnd`, `LugarFormNoRg`, `NS`, `Observaciones`, `DiasSelect`) VALUES
+            ('$Folio', '$Dependencia','$FechaInit', '$FechaFin','$NombreE', '$RFC', '$TipoContrato','$SS','$Adscrito', '$CondicionesGrTrabajo', '$LeyFederalTrabajadores', '$FechaIngreso', '$DiasLabora', '$HorarioStart', '$HorarioEnd', '$LugarFormNoRg', '$NS', '$Observaciones', '$days')";
+
+var_dump($sendData);
     $dataInsert = mysqli_query($conexion, $sendData);
 
 
     if($dataInsert){
-
+        
         //Si se agregaron correctamente los datos en la DB se muestra una ventana modal con los datos y opción de guardar en PDF
         echo '<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">';
         echo '<div class="modal-dialog modal-lg">';
@@ -329,7 +331,7 @@ if($_POST['send']){
         echo '        <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" href="Doc_mpi.php"></a>';
         echo '      </div>';
         echo '      <div class="modal-body">';
-        $folioNumber = "SELECT CONCAT( Folio, ID_Folio ) AS Result FROM $Dependencia WHERE RFC='$RFC' AND CondicionesGrTrabajo = '$CondicionesGrTrabajo' OR LeyFederalTrabajadores = '$LeyFederalTrabajadores' AND FechaInit = '$FechaInit'";
+        $folioNumber = "SELECT CONCAT( Folio, ID_Folio ) AS Result FROM $Dependencia WHERE RFC='$RFC' AND CondicionesGrTrabajo = '$CondicionesGrTrabajo' AND FechaInit = '$FechaInit'";
             $infoQuery= mysqli_query($conexion, $folioNumber);
                 while ($show_info = mysqli_fetch_array($infoQuery)){
                     /*Hacemos una primer consulta para obtener el FOLIO.
@@ -354,7 +356,13 @@ if($_POST['send']){
         echo '    </div>';
         echo '  </div>';
         echo '</div>';
+
+        
+
     }
+
+
+    
 
     echo "
     <script>

@@ -118,7 +118,7 @@ for(i=0; i<TiempoOrdinario.length; i++){
   var Info_i = HorarioEspecial[i]
     sp_hours_Show.innerHTML += `
     <div class="form-check top-space">
-      <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="" value="${Info_i.Stuf}">
+      <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="HE${i}" value="${Info_i.Stuf}">
       <label class="form-check-label" for="CondicionesGrTrabajo">
       ${Info_i.Stuf}</label>
     </div><br>
@@ -128,7 +128,7 @@ for(i=0; i<TiempoOrdinario.length; i++){
     var Info_i = Horarios[i]
     hours.innerHTML += `
     <div class="form-check top-space">
-      <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="" value="${Info_i.Stuf}">
+      <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="H${i}" value="${Info_i.Stuf}">
       <label class="form-check-label" for="CondicionesGrTrabajo">
       ${Info_i.Stuf}</label>
     </div><br>`
@@ -137,7 +137,7 @@ for(i=0; i<TiempoOrdinario.length; i++){
       var Info_i = LicenciaSueldo[i]
       sueldo.innerHTML += `
       <div class="form-check top-space">
-      <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="" value="${Info_i.Stuf}">
+      <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="LS${i}" value="${Info_i.Stuf}">
       <label class="form-check-label" for="CondicionesGrTrabajo">
       ${Info_i.Stuf}</label>
     </div><br>`
@@ -146,7 +146,7 @@ for(i=0; i<TiempoOrdinario.length; i++){
     var Info_i = LicenciaSinSueldo[i]
     sinsueldo.innerHTML += `
     <div class="form-check top-space">
-    <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="" value="${Info_i.Stuf}">
+    <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="LsS${i}" value="${Info_i.Stuf}">
     <label class="form-check-label" for="CondicionesGrTrabajo">
     ${Info_i.Stuf}</label>
     </div> <br>`
@@ -155,7 +155,7 @@ for(i=0; i<TiempoOrdinario.length; i++){
       var Info_i = Vacaciones[i]
       vacaciones.innerHTML += `
       <div class="form-check top-space">
-      <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="" value="${Info_i.Stuf}">
+      <input class="form-check-input" type="radio" name="CondicionesGrTrabajo" id="V${i}" value="${Info_i.Stuf}">
       <label class="form-check-label" for="CondicionesGrTrabajo">
       ${Info_i.Stuf}</label>
     </div><br>`
@@ -197,11 +197,3 @@ for(i=0; i<TiempoOrdinario.length; i++){
       ${Info_i.Stuf}</label>
     </div><br>`
       }
-
-var diasSelect = document.querySelector('select.form-select.dias');
- for(i=1; i<=31; i++){
-   //var NumDays = i
-   diasSelect.innerHTML += `
-   <option value="${i}">${i}</option>`
- }
-

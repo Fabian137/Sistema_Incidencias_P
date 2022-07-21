@@ -31,7 +31,8 @@ include_once('adminPlantillas.php');
     </header>
 
     <?php
-    modalValidation();
+    $name ='nameSearch.php';
+    modalValidation($name);
     ?>
 
     <section class="contenedor" style="margin-top: 2.5rem">
@@ -63,6 +64,49 @@ include_once('adminPlantillas.php');
         </form>
         <form class="contenedor row g-4 center" action="" method="post" id="formPend" autocomplete="off">
         <?php
+
+        if($_POST['validar']){
+            $validacion = $_POST["Validation"];
+            $folio = $_POST["NumeroFolio"];
+            $Dependencia = $_POST["Dependency"];
+            $Name = $_POST["Nombre"];
+          
+            /* QUERY PARA VOLVER A MOSTRAR LOS FOLIOS*/
+            $QueryByName = "SELECT * FROM $Dependencia WHERE NombreE = '$Name'";
+            /* QUERY PARA VALIDAR LA INCIDENCIA/FOLIO*/
+            $validationQuery = "UPDATE $Dependencia SET `Validation` = '$validacion' WHERE CONCAT(Folio, ID_folio)=$folio";
+
+            $infoQueryName= mysqli_query($conexion, $QueryByName);
+            $validacionIncidencia = mysqli_query($conexion, $validationQuery);
+          
+            echo '  <div class="accordion" id="accordionExample">';
+            
+            while ($show_info = mysqli_fetch_array($infoQueryName)){
+              echo '  <div class="accordion-item">';
+              echo '    <h2 class="accordion-header" id="heading'.$show_info['Folio'].''.$show_info['ID_folio'].'">';
+              echo '      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse'.$show_info['Folio'].''.$show_info['ID_folio'].'" aria-expanded="false" aria-controls="collapse'.$show_info['Folio'].''.$show_info['ID_folio'].'">';
+              echo  '       '.$show_info['NombreE'].'   FOLIO: '.$show_info['Folio'].''.$show_info['ID_folio'].'';
+              echo '      </button>';
+              echo '    </h2>';
+              echo '    <div id="collapse'.$show_info['Folio'].''.$show_info['ID_folio'].'" class="accordion-collapse collapse" aria-labelledby="heading'.$show_info['Folio'].''.$show_info['ID_folio'].'" data-bs-parent="#accordionExample">';
+              echo '      <div class="accordion-body">';
+              if($show_info['Validation']){
+                validationDone($show_info);
+              }
+              elseif (!$show_info['Validation']) {
+                validation($show_info);
+              }
+              
+              echo '      </div>';
+              echo '    </div>';
+              echo '    </div>';
+            }
+
+            echo '  </div>';
+
+            
+          }
+
         if($_POST['consultBName']){
             $Dependencia = $_POST["Dependencia"];
             $Name = $_POST["Nombre"];
@@ -86,6 +130,7 @@ include_once('adminPlantillas.php');
               elseif (!$show_info['Validation']) {
                 validation($show_info);
               }
+              
               echo '      </div>';
               echo '    </div>';
               echo '    </div>';

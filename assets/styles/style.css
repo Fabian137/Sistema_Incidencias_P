@@ -158,7 +158,8 @@ section.contenedor.row.g-3 p {
 }
 .form-control{
   background-color: #f1f1f1;
-  width: 70%;
+  width: 77%;
+  font-size: 0.95rem;
 }
 .form-label{margin-bottom: 0;}
 
@@ -208,4 +209,8 @@ section.contenedor.row.g-3 p {
 .form-check-input:checked {
   background-color: #781238;
   border-color: #970d3f;
+}
+
+#resultados {
+  margin-top: 30px;
 }

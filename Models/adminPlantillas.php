@@ -102,7 +102,7 @@ function validation($info){
     
 
     echo    '<section class="row" style="margin: 1.5rem 9%;">';
-    echo '<h6>NOMBRE:<samp style="font-weight: bolder;" id="nombre"> '. $info['NombreE'] .'</samp></h6>';
+    echo '<h6>NOMBRE: <samp style="font-weight: bolder;" id="N'. $info['Folio'].''. $info['ID_folio'].'">'. $info['NombreE'] .'</samp></h6>';
     echo '<div class="row justify-content-between">';
     echo '  <div class="col-4">';
     echo        '<h6>FOLIO:<span id="F'. $info['Folio'].''. $info['ID_folio'].'"> '. $info['Folio'].''. $info['ID_folio'].'</span></h6>';   
@@ -211,7 +211,7 @@ function validationDone($info){
 
 }
 
-function modalValidation(){
+function modalValidation($name){
     echo '<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">';
     echo '<div class="modal-dialog">';
     echo '<div class="modal-content">';
@@ -220,9 +220,10 @@ function modalValidation(){
     echo '    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
     echo '  </div>';
     echo '  <div class="modal-body">';
-    echo '    <form action="adminConsultas.php" method="post" autocomplete="off" id="validationForm" name="validationForm">';
+    echo '    <form action="'.$name.'" method="post" autocomplete="off" id="validationForm" name="validationForm">';
     echo '      <input style="display:none;" type="text" name="NumeroFolio" id="NumeroFolio" value="">';
     echo '      <input style="display:none;" type="text" name="Dependency" id="Dependency" value="">';
+    echo '      <input style="display:none;" type="text" name="Nombre" id="Nombre" value="">';
     echo '        <div class="center">';
     echo '            <div class="col-10" style="margin: 5% 0;">';
     echo '                <label class="form-label">Nombre de quien valida la incidencia</label>';
@@ -242,3 +243,4 @@ function modalValidation(){
     echo '  </div>';
     echo '</div>';
 }
+

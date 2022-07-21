@@ -32,18 +32,18 @@ include_once('adminPlantillas.php');
 
     </header>
 
-    <section class="contenedor" style="margin-top: 2.5rem">
+<div id="resultados"></div>
+<!-- Modal -->
+<?php
+$name = 'adminConsultas.php';
+modalValidation($name);
+?>
+
+<section class="contenedor" style="margin-top: 2.5rem">
     <button type="button" class="btn btn-outline-primary">
     <a href="nameSearch.php" class="btnexit" style="text-decoration: none;">Nombre</a>
     </button>
     </section>
-
-
-<!-- Modal -->
-<?php
-modalValidation();
-?>
-
 <!-- VALIDACION DE INCIDENCIA QUERY
 
 
@@ -61,29 +61,25 @@ modalValidation();
         </form>
         <form class="contenedor row g-4 center" action="" method="post" id="formPend" autocomplete="off">
         <?php
-        if($_POST['validar']){
-          $validacion = $_POST["Validation"];
-          $folio = $_POST["NumeroFolio"];
-          $Dependencia = $_POST["Dependency"];
-
-          /* QUERY PARA VALIDAR LA INCIDENCIA/FOLIO*/
-          $validationQuery = "UPDATE $Dependencia SET `Validation` = '$validacion' WHERE CONCAT(Folio, ID_folio)=$folio";
-          /* QUERY PARA VOLVER A MOSTRAR EL FOLIO YA VALIDADO*/
-          $Refresh_info= "SELECT * FROM $Dependencia WHERE CONCAT(Folio, ID_folio)=$folio";
+            if($_POST['validar']){
+              $validacion = $_POST["Validation"];
+              $folio = $_POST["NumeroFolio"];
+              $Dependencia = $_POST["Dependency"];
           
-          $validacionIncidencia = mysqli_query($conexion, $validationQuery);
-        
-          if($validacionIncidencia){
-            $infoQuery= mysqli_query($conexion, $Refresh_info);
-            while ($show_info = mysqli_fetch_array($infoQuery)){
-              validationDone($show_info);
+              /* QUERY PARA VALIDAR LA INCIDENCIA/FOLIO*/
+              $validationQuery = "UPDATE $Dependencia SET `Validation` = '$validacion' WHERE CONCAT(Folio, ID_folio)=$folio";
+              /* QUERY PARA VOLVER A MOSTRAR EL FOLIO YA VALIDADO*/
+              $Refresh_info= "SELECT * FROM $Dependencia WHERE CONCAT(Folio, ID_folio)=$folio";
+              
+              $validacionIncidencia = mysqli_query($conexion, $validationQuery);
+            
+              if($validacionIncidencia){
+                $infoQuery= mysqli_query($conexion, $Refresh_info);
+                while ($show_info = mysqli_fetch_array($infoQuery)){
+                  validationDone($show_info);
+                }
+              }
             }
-          }
-                          
-          //header("Refresh:1");
-        //PARA PROBAR MI RAMA TESTS Y TRABAJAR SOBRE ELLA 
-        }
-
 
         if($_POST['consult']){
             $folNum = $_POST["ID_folio"];
