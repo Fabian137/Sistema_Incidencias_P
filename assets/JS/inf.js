@@ -197,3 +197,49 @@ for(i=0; i<TiempoOrdinario.length; i++){
       ${Info_i.Stuf}</label>
     </div><br>`
       }
+
+      var fecha = document.getElementById('FechaInit')
+      var DaysAvailable = document.getElementById('Days').textContent
+      //var numero = document.
+
+      
+      const botons = document.querySelectorAll("[name='CondicionesGrTrabajo']");
+      botons.forEach(btn => {
+        btn.addEventListener("click", function (){
+          if(this.value =="ARTÍCULO 87"){
+
+            var TuFecha = new Date(fecha.value);
+  
+          //dias a sumar
+          var dias = parseInt(DaysAvailable)+1;
+
+          //nueva fecha sumada
+          TuFecha.setDate(TuFecha.getDate() + dias);
+
+          //POSIBLES FORMATOS DE LA FECHA
+         let MaxDate_0M0D = TuFecha.getFullYear() + '-' + '0' + (TuFecha.getMonth() + 1) + '-' + '0' + TuFecha.getDate();
+         let MaxDate_0MDD = TuFecha.getFullYear() + '-' + '0' + (TuFecha.getMonth() + 1) + '-' + TuFecha.getDate();
+         let MaxDate_MM0D = TuFecha.getFullYear() + '-' + (TuFecha.getMonth() + 1) + '-' + '0' + TuFecha.getDate();
+         let MaxDate_MMDD =TuFecha.getFullYear() + '-' + (TuFecha.getMonth() + 1) + '-' + TuFecha.getDate();
+
+         let month = (TuFecha.getMonth() + 1)
+         let dia = TuFecha.getDate()
+
+        /* Aqui estoy usando un operador para evaluar 4 casos:
+        el mes es menor a 10 y el dia menor a 10
+        el mes es menor a 10 y el dia mayor o igual a 10
+        el mes es mayor o igual a 10 y el dia menor a 10
+        el mes es mayor o igual a 10 y el dia mayor o igual a 10
+
+        Y asi puedo modficar el valor maximo de la fecha y que a ésta no le falte un 0, ya que asi no admite el valor y ps no sirve
+
+        TO DO
+        INVESTIGA OTRA FORMA DE ALTERAR GET MONTH Y GET DATE - SE COME LOS 0*/
+         month < 10 ? 
+            dia < 10 ? (document.getElementById('FechaFin').max = MaxDate_0M0D) : (document.getElementById('FechaFin').max = MaxDate_0MDD)
+         :  dia < 10 ? (document.getElementById('FechaFin').max = MaxDate_MM0D) : (document.getElementById('FechaFin').max = MaxDate_MMDD)
+
+            document.getElementById('FechaFin').min = fecha.value;
+          }
+        });
+      });

@@ -8,6 +8,9 @@ $EmpleadoUser = $_SESSION['usuario'];
 //Query para autollenado
 $UserQuery = "SELECT * FROM `Alfabetico` WHERE USUARIO = '$EmpleadoUser'";
 $UserInfo = mysqli_query($conexion, $UserQuery);
+
+
+//
 /*
 "DROP TABLE `ManyIssues`.`data`"
 
@@ -53,14 +56,39 @@ $IncidenciaInfoForPDF= "SELECT * FROM $Dependencia WHERE RFC='$RFC' AND Condicio
     </button>
     </section>
 
-    <form class="contenedor row g-3" action="Doc_mpi.php" method="post" style="margin-top:1rem;" autocomplete="off">
+    <button onclick="myFunction()">Try it</button>
+
+    <form class="contenedor row g-3" action="Doc_mpi.php" method="post" name="MainForm" style="margin-top:1rem;" autocomplete="off">
       
    
 <?php
 while($UInfo = mysqli_fetch_array($UserInfo)){
+
+    $DependenciaQ = $UInfo["Adscrito"];
+    $RFCQ = $UInfo["RFC"];
+
+    $TotalDays = 10;
+    $DaysCountQ = "SELECT DiasSelect FROM $DependenciaQ WHERE RFC = '$RFCQ' AND CondicionesGrTrabajo = 'ARTÍCULO 87'";
+    $DaysCountC = mysqli_query($conexion, $DaysCountQ);
+    while($Days = mysqli_fetch_array($DaysCountC)){
+        echo ("\n");
+        //$DaysOff = [];
+        /* CONVERTIR DAYS OFF EN UN ARREGLO DONDE SE VAYAN AGRERGANDO LOS RESULTADOS Y DESPUES
+        TOMAR EL ULTIMO RESULTADO :) */
+        echo $DaysOff += $Days["DiasSelect"];
+        var_dump($DaysOff);
+        $LastDayInterval = "SELECT DiasSelect FROM $DependenciaQ WHERE RFC = '$RFCQ' AND CondicionesGrTrabajo = 'ARTÍCULO 87' ORDER BY DiasSelect DESC LIMIT 1";
+        $LastDayIntervalC = mysqli_query($conexion, $LastDayInterval);
+        //while($DaysL = mysqli_fetch_array($DaysCountC)){
+        //    echo '<div style="display:none;" id="Days">'.$DaysOff.'</div>';
+        //    var_dump ($DaysL["DiasSelect"]);
+        //}
+    }
+
 ?>
 
     <div class="row">
+        
         <div class="col-md-4">
             <h6 id="folio_Genereted"></h6>
         </div>
@@ -145,9 +173,9 @@ while($UInfo = mysqli_fetch_array($UserInfo)){
             </p>
             <div class="col-md-6 top-space form-inline">
                 <p>DEL</p>
-                <input class="form-control" type="date" id="" name="FechaInit" min="2022-01-01" max="2025-12-31" style="width:35%;"> 
+                <input class="form-control" type="date" id="FechaInit" name="FechaInit" min="2022-01-01" max="2025-12-31" style="width:35%;"> 
                 <p>AL</p>
-                <input class="form-control" type="date" id="" name="FechaFin" min="2022-01-01" max="2025-12-31" style="width:35%;"> 
+                <input class="form-control" type="date" id="FechaFin" name="FechaFin" min="2022-01-01" max="2025-12-31" style="width:35%;"> 
             </div>
             <p class="col-md-6"></p>
             <div class="col-md-6 top-space form-inline">

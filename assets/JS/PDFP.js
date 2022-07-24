@@ -16,35 +16,47 @@ function loadImage(url) {
     });
 }
 
+const botons = document.querySelectorAll("[name='btnPDF']");
+    
+
 window.addEventListener('load', async () => {
-    var IdentifyID = 2134
-    //const form = document.querySelector('#formc');
-   const form = document.getElementById('FormAdmin'+IdentifyID);
-   form.addEventListener('submit', (e) => {
-       e.preventDefault();
+    botons.forEach(btn => {
+    
+        btn.addEventListener("click", function() {
+            //if (resultados) resultados.textContent = this.value;
+          var IdentifyID = this.value;
+          
+          
+          const form = document.getElementById('FormAdmin'+IdentifyID);
+          form.addEventListener('submit', (e) => {
+              e.preventDefault();
+       
+              console.log(IdentifyID);
+       
+              var dependencia = document.getElementById('D'+IdentifyID).textContent;
+              var folio = document.getElementById('F'+IdentifyID).textContent;
+              var nombre = document.getElementById('nombre'+IdentifyID).textContent;
+              var rfc =   document.getElementById('rfc'+IdentifyID).textContent;
+              var fecha =  document.getElementById('fecha'+IdentifyID).textContent;
+              var tipoContrato =   document.getElementById('tipoContrato'+IdentifyID).textContent;
+              var ss = document.getElementById('ss'+IdentifyID).textContent;
+              var adscrito = document.getElementById('adscrito'+IdentifyID).textContent;
+              var CondicionesTrabajo = document.getElementById('CondicionesTrabajo'+IdentifyID).textContent;
+              var LeyFederal = document.getElementById('LeyFederal'+IdentifyID).textContent;
+              var FechaIngreso = document.getElementById('FechaIngreso'+IdentifyID).textContent;
+              var Horarios = document.getElementById('Horarios'+IdentifyID).textContent;
+              var Observaciones = document.getElementById('Observaciones'+IdentifyID).textContent;
+              var Place = document.getElementById('Place'+IdentifyID).textContent;
+              var DiasLabora = document.getElementById('DiasLabora'+IdentifyID).textContent;
+              var NS = document.getElementById('NS'+IdentifyID).textContent;
+       
+       
+              generatePDF(folio, nombre, rfc, fecha, tipoContrato, CondicionesTrabajo, LeyFederal, FechaIngreso, Horarios, ss, Observaciones, NS, adscrito, Place, DiasLabora, dependencia);
+         
+      });
+  });
 
-       console.log(IdentifyID);
-
-       var dependencia = document.getElementById('D'+IdentifyID).textContent;
-       var folio = document.getElementById('F'+IdentifyID).textContent;
-       var nombre = document.getElementById('nombre'+IdentifyID).textContent;
-       var rfc =   document.getElementById('rfc'+IdentifyID).textContent;
-       var fecha =  document.getElementById('fecha'+IdentifyID).textContent;
-       var tipoContrato =   document.getElementById('tipoContrato'+IdentifyID).textContent;
-       var ss = document.getElementById('ss'+IdentifyID).textContent;
-       var adscrito = document.getElementById('adscrito'+IdentifyID).textContent;
-       var CondicionesTrabajo = document.getElementById('CondicionesTrabajo'+IdentifyID).textContent;
-       var LeyFederal = document.getElementById('LeyFederal'+IdentifyID).textContent;
-       var FechaIngreso = document.getElementById('FechaIngreso'+IdentifyID).textContent;
-       var Horarios = document.getElementById('Horarios'+IdentifyID).textContent;
-       var Observaciones = document.getElementById('Observaciones'+IdentifyID).textContent;
-       var Place = document.getElementById('Place'+IdentifyID).textContent;
-       var DiasLabora = document.getElementById('DiasLabora'+IdentifyID).textContent;
-       var NS = document.getElementById('NS'+IdentifyID).textContent;
-
-
-       generatePDF(folio, nombre, rfc, fecha, tipoContrato, CondicionesTrabajo, LeyFederal, FechaIngreso, Horarios, ss, Observaciones, NS, adscrito, Place, DiasLabora, dependencia);
-   })
+    })
 
 });
 

@@ -152,7 +152,7 @@ include_once('adminPlantillas.php');
     <script src="../../jspdf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
     <!--<script src="/assets/JS/directorio.js"></script>-->  
-   <script src="../assets/JS/pdf.js"></script>
+   <script src="../assets/JS/PDFP.js"></script>
    <script src="../assets/JS/functionsG.js"></script>
 </body>
 </html>

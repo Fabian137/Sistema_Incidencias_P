@@ -32,7 +32,6 @@ include_once('adminPlantillas.php');
 
     </header>
 
-<div id="resultados"></div>
 <!-- Modal -->
 <?php
 $name = 'adminConsultas.php';
@@ -59,7 +58,9 @@ modalValidation($name);
             <input class="btnN " style="width:10rem;" name="consult" type="submit" value="Consultar"><br>
           </div>
         </form>
+        <!--
         <form class="contenedor row g-4 center" action="" method="post" id="formPend" autocomplete="off">
+-->
         <?php
             if($_POST['validar']){
               $validacion = $_POST["Validation"];
@@ -169,7 +170,7 @@ modalValidation($name);
             
          }
          ?>
-</form>
+<!--</form>-->
 
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -179,7 +180,10 @@ modalValidation($name);
     <script src="../../jspdf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
     <!--<script src="/assets/JS/directorio.js"></script>-->
-   <script src="../assets/JS/pdf.js"></script>
+   <!--<script src="../assets/JS/PDF.js"></script>-->
+   <!--<script src="../assets/JS/pdf.js"></script>-->
+
+   <script src="../assets/JS/PDFP.js"></script>
    <script src="../assets/JS/functionsG.js"></script>
    
 </body>

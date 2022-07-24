@@ -97,9 +97,7 @@ function searchNameInfo($info){
 }
 
 function validation($info){
-
-
-    
+   // echo '<form action="" method="post" id="FormAdmin'.$info['Folio'].''. $info['ID_folio'].'" autocomplete="off">';
 
     echo    '<section class="row" style="margin: 1.5rem 9%;">';
     echo '<h6>NOMBRE: <samp style="font-weight: bolder;" id="N'. $info['Folio'].''. $info['ID_folio'].'">'. $info['NombreE'] .'</samp></h6>';
@@ -153,9 +151,12 @@ function validation($info){
     echo        '<p class="col-md-12">LUGAR FORMA Y NÚMERO DE REGISTRO:  <samp style="font-weight: bolder;" id="Place"> '. $info['LugarFormNoRg'] .'</samp></p>';
     echo        '<p class="col-md-12">N.S.  <samp style="font-weight: bolder;" id="NS"> '. $info['NS'] .'</samp></p>';
     echo    '</section>';
+    //echo '</form>';
 }
 
 function validationDone($info){
+    echo '<form action="" method="post" id="FormAdmin'.$info['Folio'].''. $info['ID_folio'].'" autocomplete="off">';
+
     echo    '<section class="row" style="margin: 1.5rem 9%;">';
     echo '<h6>NOMBRE:<samp style="font-weight: bolder;" id="nombre'. $info['Folio'].''. $info['ID_folio'].'"> '. $info['NombreE'] .'</samp></h6>';
     echo '<div class="row justify-content-between">';
@@ -163,51 +164,52 @@ function validationDone($info){
     echo        '<h6>FOLIO:<span id="F'. $info['Folio'].''. $info['ID_folio'].'"> '. $info['Folio'].''. $info['ID_folio'].'</span></h6>';   
     echo '    </div>';
     echo '    <div class="col-3">';
-    /*-- Button trigger modal --*/
     echo '<h6>Validado por: '.$info['Validation'].'</h6>';
     echo '    </div>';
     echo '</div>';
     echo        '<h6 id="D'. $info['Folio'].''. $info['ID_folio'].'"> '. $info['Dependencia'].'</h6>';
     echo        '<h6 class="top-space center">DOCUMENTO MÚLTIPLE DE INCIDENCIAS</h6>';
-    echo        '<p>SOLICITO SE TRAMITE LO SEÑALADO A CONTINUACIÓN, CORRESPONDIENTE AL:  DEL <samp style="font-weight: bolder;" id="fecha"> '. $info['FechaInit'].' AL '. $info['FechaFin'].'</samp></p>';
+    echo        '<p>SOLICITO SE TRAMITE LO SEÑALADO A CONTINUACIÓN, CORRESPONDIENTE AL:  DEL <samp style="font-weight: bolder;" id="fecha'. $info['Folio'].''. $info['ID_folio'].'"> '. $info['FechaInit'].' AL '. $info['FechaFin'].'</samp></p>';
     echo        '<br>';
     echo        '<p>RESPECTO DEL (A)C.<samp style="font-weight: bolder;"> <samp style="font-weight: bolder;">'.$info['NombreE'].'</p>';
 
-    echo        '<p class="col-md-4">RFC:<samp style="font-weight: bolder;" id="rfc"> '. $info['RFC'].'</samp></p>';
-    echo        '<p class="col-md-6">TIPO DE CONTRATO-No. DE EMPLEADO(A):<samp style="font-weight: bolder;" id="tipoContrato"> '.$info['TipoContrato'].'</samp></p>';
-    echo        '<p class="col-md-3">SEC. SIN.<samp style="font-weight: bolder;" id="ss">'.$info['SS'].'</samp></p>';
+    echo        '<p class="col-md-4">RFC:<samp style="font-weight: bolder;" id="rfc'.$info['Folio'].''. $info['ID_folio'].'"> '. $info['RFC'].'</samp></p>';
+    echo        '<p class="col-md-6">TIPO DE CONTRATO-No. DE EMPLEADO(A):<samp style="font-weight: bolder;" id="tipoContrato'.$info['Folio'].''. $info['ID_folio'].'"> '.$info['TipoContrato'].'</samp></p>';
+    echo        '<p class="col-md-3">SEC. SIN.<samp style="font-weight: bolder;" id="ss'.$info['Folio'].''. $info['ID_folio'].'">'.$info['SS'].'</samp></p>';
 
-    echo        '<p class="col-md-4">ADSCRITO(A) A: <samp style="font-weight: bolder;" id="adscrito">'. $info['Adscrito'].'</samp></p>';
+    echo        '<p class="col-md-4">ADSCRITO(A) A: <samp style="font-weight: bolder;" id="adscrito'.$info['Folio'].''. $info['ID_folio'].'">'. $info['Adscrito'].'</samp></p>';
     echo    '<hr>';
     $incidencia = $info['CondicionesGrTrabajo'];
     $ValueIncidencia = str_split($incidencia, 3);
     
     if($ValueIncidencia[0] == 'LEY'){
         echo        '<h6 class="center">CONDICIONES GENERALES DEL TRABAJO DEL G.D.F.</h6>';
-        echo        '<p class="col-md-12 "> <samp style="font-weight: bolder;" id="CondicionesTrabajo"></samp></p>';
+        echo        '<p class="col-md-12 "> <samp style="font-weight: bolder;" id="CondicionesTrabajo'.$info['Folio'].''. $info['ID_folio'].'"></samp></p>';
         echo    '<hr>';
         echo        '<h6 class="center">LEY FEDERAL DE LOS TRABAJADORES AL SERVICIO DEL ESTADO</h6>';
-        echo        '<p class="col-md-12"><samp style="font-weight: bolder;" id="LeyFederal">'. $ValueIncidencia[1].''. $ValueIncidencia[2].''. $ValueIncidencia[3].''. $ValueIncidencia[4].''. $ValueIncidencia[5].''. $ValueIncidencia[6].''. $ValueIncidencia[7].''. $ValueIncidencia[8].''. $ValueIncidencia[9].''. $ValueIncidencia[10].''. $ValueIncidencia[11].''. $ValueIncidencia[12].''. $ValueIncidencia[13].'</samp></p>';
+        echo        '<p class="col-md-12"><samp style="font-weight: bolder;" id="LeyFederal'.$info['Folio'].''. $info['ID_folio'].'">'. $ValueIncidencia[1].''. $ValueIncidencia[2].''. $ValueIncidencia[3].''. $ValueIncidencia[4].''. $ValueIncidencia[5].''. $ValueIncidencia[6].''. $ValueIncidencia[7].''. $ValueIncidencia[8].''. $ValueIncidencia[9].''. $ValueIncidencia[10].''. $ValueIncidencia[11].''. $ValueIncidencia[12].''. $ValueIncidencia[13].'</samp></p>';
         echo    '<hr>';
     }
     else if($ValueIncidencia[0] !== 'LEY'){
         echo        '<h6 class="center">CONDICIONES GENERALES DEL TRABAJO DEL G.D.F.</h6>';
-    echo        '<p class="col-md-12 "> <samp style="font-weight: bolder;" id="CondicionesTrabajo">'. $incidencia .'</samp></p>';
+    echo        '<p class="col-md-12 "> <samp style="font-weight: bolder;" id="CondicionesTrabajo'.$info['Folio'].''. $info['ID_folio'].'">'. $incidencia .'</samp></p>';
     echo    '<hr>';
 
     echo        '<h6 class="center">LEY FEDERAL DE LOS TRABAJADORES AL SERVICIO DEL ESTADO</h6>';
-        echo        '<p class="col-md-12"><samp style="font-weight: bolder;" id="LeyFederal"> </samp></p>';
+        echo        '<p class="col-md-12"><samp style="font-weight: bolder;" id="LeyFederal'.$info['Folio'].''. $info['ID_folio'].'"> </samp></p>';
         echo    '<hr>';
     }
-    echo        '<p class="col-md-12">OBSERVACIONES: <samp style="font-weight: bolder;" id="Observaciones">'. $info['Observaciones'] .'</samp></p>';
-    echo        '<p class="col-md-4">FECHA DE INGRESO: <samp style="font-weight: bolder;" id="FechaIngreso">'. $info['FechaIngreso'] .'</samp></p>';
-    echo        '<p class="col-md-4">DÍAS QUE LABORA: <samp style="font-weight: bolder;" id="DiasLabora">'. $info['DiasLabora'] .'</samp></p>';
-    echo        '<p class="col-md-4">HORARIO: <samp style="font-weight: bolder;" id="Horarios">'. $info['HorarioStart'].' A '. $info['HorarioEnd'] .'</samp></p>';
-    echo        '<p class="col-md-12">LUGAR FORMA Y NÚMERO DE REGISTRO:  <samp style="font-weight: bolder;" id="Place"> '. $info['LugarFormNoRg'] .'</samp></p>';
-    echo        '<p class="col-md-12">N.S.  <samp style="font-weight: bolder;" id="NS"> '. $info['NS'] .'</samp></p>';
+    echo        '<p class="col-md-12">OBSERVACIONES: <samp style="font-weight: bolder;" id="Observaciones'.$info['Folio'].''. $info['ID_folio'].'">'. $info['Observaciones'] .'</samp></p>';
+    echo        '<p class="col-md-4">FECHA DE INGRESO: <samp style="font-weight: bolder;" id="FechaIngreso'.$info['Folio'].''. $info['ID_folio'].'">'. $info['FechaIngreso'] .'</samp></p>';
+    echo        '<p class="col-md-4">DÍAS QUE LABORA: <samp style="font-weight: bolder;" id="DiasLabora'.$info['Folio'].''. $info['ID_folio'].'">'. $info['DiasLabora'] .'</samp></p>';
+    echo        '<p class="col-md-4">HORARIO: <samp style="font-weight: bolder;" id="Horarios'.$info['Folio'].''. $info['ID_folio'].'">'. $info['HorarioStart'].' A '. $info['HorarioEnd'] .'</samp></p>';
+    echo        '<p class="col-md-12">LUGAR FORMA Y NÚMERO DE REGISTRO:  <samp style="font-weight: bolder;" id="Place'.$info['Folio'].''. $info['ID_folio'].'"> '. $info['LugarFormNoRg'] .'</samp></p>';
+    echo        '<p class="col-md-12">N.S.  <samp style="font-weight: bolder;" id="NS'.$info['Folio'].''. $info['ID_folio'].'"> '. $info['NS'] .'</samp></p>';
     echo    '</section>';
     
-    echo    '<div class="center"><button type="submit" class="btn btn-primary mb-4">Generar PDF</button></div>';
+    echo    '<div class="center"><button class="btn btn-primary mb-4" name="btnPDF" value="'.$info['Folio'].''. $info['ID_folio'].'">Generar PDF</button></div>';
+
+    echo '</form>';
 
 }
 
