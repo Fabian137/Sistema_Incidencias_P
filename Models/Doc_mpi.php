@@ -10,18 +10,6 @@ $UserQuery = "SELECT * FROM `Alfabetico` WHERE USUARIO = '$EmpleadoUser'";
 $UserInfo = mysqli_query($conexion, $UserQuery);
 
 
-//
-/*
-"DROP TABLE `ManyIssues`.`data`"
-
-$IncidenciaInfoForPDF= "SELECT * FROM $Dependencia WHERE RFC='$RFC' AND CondicionesGrTrabajo = '$CondicionesGrTrabajo' OR LeyFederalTrabajadores = '$LeyFederalTrabajadores' AND FechaInit = '$FechaInit'";
-                
-                $PDFinfo= mysqli_query($conexion, $IncidenciaInfoForPDF);
-                while ($info = mysqli_fetch_array($PDFinfo)){
-                    echo '<form action="" method="post" id="UserForm" autocomplete="off">';
-                    infoDependencia($info);
-                    echo '</form>';
-                }*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,11 +44,8 @@ $IncidenciaInfoForPDF= "SELECT * FROM $Dependencia WHERE RFC='$RFC' AND Condicio
     </button>
     </section>
 
-    <button onclick="myFunction()">Try it</button>
-
     <form class="contenedor row g-3" action="Doc_mpi.php" method="post" name="MainForm" style="margin-top:1rem;" autocomplete="off">
       
-   
 <?php
 while($UInfo = mysqli_fetch_array($UserInfo)){
 
@@ -68,21 +53,19 @@ while($UInfo = mysqli_fetch_array($UserInfo)){
     $RFCQ = $UInfo["RFC"];
 
     $TotalDays = 10;
-    $DaysCountQ = "SELECT DiasSelect FROM $DependenciaQ WHERE RFC = '$RFCQ' AND CondicionesGrTrabajo = 'ARTÍCULO 87'";
+    $DaysCountQ = "SELECT SUM(DiasSelect) SUMVALUE FROM $DependenciaQ WHERE RFC='$RFCQ' AND CondicionesGrTrabajo='ARTÍCULO 87'";
     $DaysCountC = mysqli_query($conexion, $DaysCountQ);
     while($Days = mysqli_fetch_array($DaysCountC)){
-        echo ("\n");
-        //$DaysOff = [];
-        /* CONVERTIR DAYS OFF EN UN ARREGLO DONDE SE VAYAN AGRERGANDO LOS RESULTADOS Y DESPUES
-        TOMAR EL ULTIMO RESULTADO :) */
-        echo $DaysOff += $Days["DiasSelect"];
-        var_dump($DaysOff);
-        $LastDayInterval = "SELECT DiasSelect FROM $DependenciaQ WHERE RFC = '$RFCQ' AND CondicionesGrTrabajo = 'ARTÍCULO 87' ORDER BY DiasSelect DESC LIMIT 1";
-        $LastDayIntervalC = mysqli_query($conexion, $LastDayInterval);
-        //while($DaysL = mysqli_fetch_array($DaysCountC)){
-        //    echo '<div style="display:none;" id="Days">'.$DaysOff.'</div>';
-        //    var_dump ($DaysL["DiasSelect"]);
-        //}
+        /* EN LUGAR DE SUMAR LOS VALORES EN EL CÓDIGO CADA QUE SE CONSULTE UNO NUEVO
+        LA QUERY SUMA ESOS VALORES Y ME LOS DA EN UNO
+        
+        ASI EVITANDO LA GENERACIÓN DE ITEMS INNECESARIOS QUE PROVOCARÍAN LA TRONADERA DEL CÓDIGO:) 
+        */
+        $DaysOff = $Days["SUMVALUE"];
+        $AvailableDays = $TotalDays - $DaysOff;
+        echo '<span id="Days" style="display:none;">'.$AvailableDays.'</span>';
+
+
     }
 
 ?>
@@ -302,7 +285,7 @@ while($UInfo = mysqli_fetch_array($UserInfo)){
     <!--<script src="/assets/JS/directorio.js"></script>-->  
     <script src="../../jspdf.min.js"></script>
    <script src="../assets/JS/inf.js"></script>
-   <script src="../assets/JS/userPDF.js"></script>
+   <script src="../assets/JS/PDFP.js"></script>
 </body>
 </html>
 
@@ -370,14 +353,15 @@ var_dump($sendData);
 
                     $PDFinfo= mysqli_query($conexion, $IncidenciaInfoForPDF);
                         while ($info = mysqli_fetch_array($PDFinfo)){
-                           echo '<form action="" method="post" id="UserForm" autocomplete="off">';
-                           infoDependencia($info);
-                           echo '</form>';
+                           validationDone($info);
                         }
                     
                 }
         echo '      </div>';
         echo '      <div class="modal-footer">';
+        echo '<button type="button" class="btn btn-outline-primary">';
+        echo '<a href="exit.php" class="btnexit" style="text-decoration: none;">Cerrar sesión</a>';
+        echo '</button>';
         
         echo '            <a  type="button" class="btn btn-secondary" href="Doc_mpi.php">CERRAR</a>';
         echo '      </div>';

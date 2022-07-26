@@ -16,11 +16,11 @@ function loadImage(url) {
     });
 }
 
-const botons = document.querySelectorAll("[name='btnPDF']");
+const btnPDF = document.querySelectorAll("[name='btnPDF']");
     
 
 window.addEventListener('load', async () => {
-    botons.forEach(btn => {
+    btnPDF.forEach(btn => {
     
         btn.addEventListener("click", function() {
             //if (resultados) resultados.textContent = this.value;

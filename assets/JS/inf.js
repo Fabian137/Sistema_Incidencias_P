@@ -202,14 +202,13 @@ for(i=0; i<TiempoOrdinario.length; i++){
       var DaysAvailable = document.getElementById('Days').textContent
       //var numero = document.
 
-      
+      if(DaysAvailable < 0) document.getElementById('LS0').disabled = true;
+
       const botons = document.querySelectorAll("[name='CondicionesGrTrabajo']");
       botons.forEach(btn => {
         btn.addEventListener("click", function (){
           if(this.value =="ARTÍCULO 87"){
-
-            var TuFecha = new Date(fecha.value);
-  
+          var TuFecha = new Date(fecha.value);
           //dias a sumar
           var dias = parseInt(DaysAvailable)+1;
 
