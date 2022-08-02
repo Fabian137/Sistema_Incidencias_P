@@ -36,9 +36,9 @@ include_once('adminPlantillas.php');
     ?>
 
     <section class="contenedor" style="margin-top: 2.5rem">
-    <button type="button" class="btn btn-outline-primary">
-    <a href="adminConsultas.php" class="btnexit" style="text-decoration: none;">Folio</a>
-    </button>
+      <a href="adminConsultas.php" style="text-decoration: none;">
+        <button type="button" class="btn btnexit">Folio</button>
+      </a>
     </section>
 
     <form class="contenedor row g-4 center" action="nameSearch.php" method="post" autocomplete="off">

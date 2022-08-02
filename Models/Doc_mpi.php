@@ -39,9 +39,10 @@ $UserInfo = mysqli_query($conexion, $UserQuery);
     </header>
     
     <section class="contenedor" style="margin-top: 2.5rem">
-    <button type="button" class="btn btn-outline-primary">
-        <a href="exit.php" class="btnexit" style="text-decoration: none;">Cerrar sesión</a>
-    </button>
+        
+    <a href="exit.php" class="btnexit" style="text-decoration: none;">
+        <button type="button" class="btn btn-outline-primary">Cerrar sesión</button>
+    </a>
     </section>
 
     <form class="contenedor row g-3" action="Doc_mpi.php" method="post" name="MainForm" style="margin-top:1rem;" autocomplete="off">
@@ -359,9 +360,8 @@ var_dump($sendData);
                 }
         echo '      </div>';
         echo '      <div class="modal-footer">';
-        echo '<button type="button" class="btn btn-outline-primary">';
-        echo '<a href="exit.php" class="btnexit" style="text-decoration: none;">Cerrar sesión</a>';
-        echo '</button>';
+        
+        echo '<a href="exit.php" class="btnexit" style="text-decoration: none;"><button type="button" class="btn btn-outline-primary">Cerrar sesión</button></a>';
         
         echo '            <a  type="button" class="btn btn-secondary" href="Doc_mpi.php">CERRAR</a>';
         echo '      </div>';

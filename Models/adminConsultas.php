@@ -39,9 +39,8 @@ modalValidation($name);
 ?>
 
 <section class="contenedor" style="margin-top: 2.5rem">
-    <button type="button" class="btn btn-outline-primary">
-    <a href="nameSearch.php" class="btnexit" style="text-decoration: none;">Nombre</a>
-    </button>
+    
+    <a href="nameSearch.php" class="btnexit" style="text-decoration: none;"><button type="button" class="btn btn-outline-primary">Nombre</button></a>
     </section>
 <!-- VALIDACION DE INCIDENCIA QUERY
 
